@@ -3,7 +3,7 @@ import React from "react";
 export const PreviewBannerDefault = ({ cardBgColor }) => {
   return (
     <div
-      className={`items-center flex flex-col relative p-8 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
+      className={`w-full sm:w-96 items-center flex flex-col relative p-8 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
       <div className="relative flex flex-col items-center justify-center p-8 overflow-hidden bg-white rounded-lg shadow-lg w-96 shadow-light/30">
         <div

@@ -6,6 +6,8 @@ export const UserContext = createContext(null);
 // Color State
 const initialState = {
   searchUser: null,
+  userValid: false,
+  errorGenerating: false,
   count: 1,
 };
 // Color Reducer
@@ -22,6 +24,16 @@ function reducer(state, action) {
       return {
         ...state,
         count: action.payload,
+      };
+    case "set-user-validity":
+      return {
+        ...state,
+        userValid: action.payload,
+      };
+    case "check-for-errors":
+      return {
+        ...state,
+        errorGenerating: action.payload,
       };
     default:
       throw new Error();

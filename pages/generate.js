@@ -50,15 +50,15 @@ const BasicDefault = React.forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className={`w-128 relative p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
+      className={`w-full sm:w-96 relative p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
         `}
     >
       <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-lg">
-        <div className="w-1/3">
+        <div className="w-24">
           <Image
             src={profileImageURL}
-            width={486}
-            height={486}
+            width={102}
+            height={102}
             className="object-scale-down overflow-hidden rounded-full"
           />
         </div>
@@ -230,7 +230,7 @@ export default function Share(props) {
   }, []);
 
   return (
-    <main className="flex flex-col w-full p-12 ml-80">
+    <main className="flex flex-col w-full p-4 ml-20 lg:p-12 lg:ml-80">
       <Head>
         <title>holr | Share Your Shoutout</title>
         <meta name="description" content="Twitter shoutout machine" />
@@ -245,7 +245,7 @@ export default function Share(props) {
       {!props.twitterInfo ? (
         <p>Couldn't fetch information from Twitter</p>
       ) : props.cardStyle === "basic-default" ? (
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           <article>
             <BasicDefault
               ref={basicDefaultRef}

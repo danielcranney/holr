@@ -28,7 +28,7 @@ export default function Home() {
   const [selectedStyle, setSelectedStyle] = useState("basic-default");
   const [cardBgColor, setCardBgColor] = useState("bg-blue-500");
   const [cardTextColor, setCardTextColor] = useState("text-blue-500");
-  const [userValid, setUserValid] = useState(false);
+  // const [userValid, setUserValid] = useState(false);
   const [errorGenerating, setErrorGenerating] = useState(false);
   const searchRef = useRef(null);
   const router = useRouter();
@@ -55,12 +55,18 @@ export default function Home() {
       // console.log(response.message);
       console.log(resError.message);
       console.log(response.status);
-      setUserValid(false);
+      dispatch({
+        type: "set-user-validity",
+        payload: false,
+      });
     } else {
       console.log(response.status);
       const validatedUser = await response.json();
       console.log(validatedUser);
-      setUserValid(validatedUser);
+      dispatch({
+        type: "set-user-validity",
+        payload: validatedUser,
+      });
     }
   };
 
@@ -114,7 +120,7 @@ export default function Home() {
               }}
             />
 
-            {!userValid ? (
+            {!state.userValid ? (
               <p className="absolute flex items-center w-auto h-8 p-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase -translate-y-1/2 bg-red-500 rounded-md right-2 top-1/2 bg-opacity-10">
                 <svg
                   className="w-4 h-4 mr-1.5 text-red-500"
@@ -196,8 +202,8 @@ export default function Home() {
           id="edit-colors"
           className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
         >
-          <article className="flex flex-col w-full lg:flex-row">
-            <div className="w-full lg:w-1/2">
+          <article className="flex flex-col w-full lg:flex-row gap-x-0 sm:gap-x-4">
+            <div className="flex-grow">
               <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
                 Step 3
               </p>
@@ -302,7 +308,7 @@ export default function Home() {
               </article>
             </div>
             {/* Preview */}
-            <div className="flex flex-col w-full mt-8 lg:mt-0 lg:w-1/2">
+            <div className="flex flex-col w-full mt-8 lg:mt-0 sm:w-96">
               {selectedStyle === "basic-default" ? (
                 <PreviewBasicDefault cardBgColor={cardBgColor} />
               ) : selectedStyle === "basic-alt" ? (
@@ -319,8 +325,11 @@ export default function Home() {
         <section className="flex flex-col py-12 border-b-2 border-xlight">
           <button
             onClick={() => {
-              if (userValid) {
-                setErrorGenerating(false);
+              if (state.userValid) {
+                dispatch({
+                  type: "check-for-errors",
+                  payload: false,
+                });
                 router.push({
                   pathname: "/generate",
                   query: {
@@ -331,14 +340,17 @@ export default function Home() {
                   },
                 });
               } else {
-                setErrorGenerating(true);
+                dispatch({
+                  type: "check-for-errors",
+                  payload: true,
+                });
               }
             }}
             className="w-1/2 p-3.5 font-bold text-white rounded-lg bg-brand mb-4"
           >
             Generate Shoutout
           </button>
-          {errorGenerating ? (
+          {state.errorGenerating ? (
             <div className="w-1/2 h-8 p-2 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md right-2 bg-opacity-10">
               Error - Check user is valid
             </div>
