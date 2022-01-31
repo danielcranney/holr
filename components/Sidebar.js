@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 
-import { UserContext } from "../pages/_app";
+import { StateContext } from "../pages/_app";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const Sidebar = () => {
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(StateContext);
+  const router = useRouter();
+
   return (
     <aside className="fixed top-0 w-20 h-full p-4 bg-white border-r lg:p-8 lg:w-80 border-xlight">
       <div className="flex items-center mb-8">
@@ -30,15 +33,17 @@ export const Sidebar = () => {
                 payload: 1,
               });
             }}
-            className={`transition-all duration-150 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+            className={`transition-all duration-150 ease-in-out flex group items-center p-3 mb-1 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
               state.count === 1
                 ? "bg-opacity-5 bg-brand"
-                : "bg-opacity-0 bg-transparent"
+                : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
             }`}
           >
             <svg
               className={`w-5 h-5 mr-0 lg:mr-3 ${
-                state.count === 1 ? "text-brand" : "text-mid"
+                state.count === 1
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
               fill="none"
               stroke="currentColor"
@@ -54,7 +59,9 @@ export const Sidebar = () => {
             </svg>
             <p
               className={`mb-0 text-lg hidden lg:inline-flex ${
-                state.count === 1 ? "text-brand" : "text-mid"
+                state.count === 1
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
             >
               Find user
@@ -69,15 +76,17 @@ export const Sidebar = () => {
                 payload: 2,
               });
             }}
-            className={`transition-all duration-150 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+            className={`transition-all duration-150 ease-in-out mb-1 flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
               state.count === 2
                 ? "bg-opacity-5 bg-brand"
-                : "bg-opacity-0 bg-transparent"
+                : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
             }`}
           >
             <svg
               className={`w-5 h-5 mr-0 lg:mr-3 ${
-                state.count === 2 ? "text-brand" : "text-mid"
+                state.count === 2
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
               fill="none"
               stroke="currentColor"
@@ -93,7 +102,9 @@ export const Sidebar = () => {
             </svg>
             <p
               className={`mb-0 text-lg hidden lg:inline-flex ${
-                state.count === 2 ? "text-brand" : "text-mid"
+                state.count === 2
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
             >
               Select Style
@@ -108,15 +119,17 @@ export const Sidebar = () => {
                 payload: 3,
               });
             }}
-            className={`transition-all duration-150 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+            className={`transition-all duration-150 mb-1 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
               state.count === 3
                 ? "bg-opacity-5 bg-brand"
-                : "bg-opacity-0 bg-transparent"
+                : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
             }`}
           >
             <svg
               className={`w-5 h-5 mr-0 lg:mr-3 ${
-                state.count === 3 ? "text-brand" : "text-mid"
+                state.count === 3
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
               fill="none"
               stroke="currentColor"
@@ -132,7 +145,9 @@ export const Sidebar = () => {
             </svg>
             <p
               className={`mb-0 text-lg hidden lg:inline-flex ${
-                state.count === 3 ? "text-brand" : "text-mid"
+                state.count === 3
+                  ? "text-brand"
+                  : "text-mid group-hover:text-brand"
               }`}
             >
               Edit Colors
@@ -141,20 +156,43 @@ export const Sidebar = () => {
         </Link>
         <button
           onClick={() => {
-            dispatch({
-              type: "set-count",
-              payload: 4,
-            });
+            if (state.userValid) {
+              dispatch({
+                type: "check-for-errors",
+                payload: false,
+              });
+              router.push({
+                pathname: "/generate",
+                query: {
+                  searchUser: state.searchUser,
+                  cardStyle: state.selectedStyle,
+                  textColor: state.cardTextColor,
+                  bgColor: state.cardBgColor,
+                },
+              });
+              dispatch({
+                type: "set-count",
+                payload: 4,
+              });
+            } else {
+              dispatch({
+                type: "check-for-errors",
+                payload: true,
+              });
+              router.push("/#find-user");
+            }
           }}
-          className={`transition-all duration-150 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+          className={`relative transition-all duration-150 mb-1 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
             state.count === 4
               ? "bg-opacity-5 bg-brand"
-              : "bg-opacity-0 bg-transparent"
+              : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
           }`}
         >
           <svg
             className={`w-5 h-5 mr-0 lg:mr-3 ${
-              state.count === 4 ? "text-brand" : "text-mid"
+              state.count === 4
+                ? "text-brand"
+                : "text-mid group-hover:text-brand"
             }`}
             fill="none"
             stroke="currentColor"
@@ -168,10 +206,11 @@ export const Sidebar = () => {
               d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
             ></path>
           </svg>
-
           <p
             className={`mb-0 text-lg hidden lg:inline-flex ${
-              state.count === 4 ? "text-brand" : "text-mid"
+              state.count === 4
+                ? "text-brand"
+                : "text-mid group-hover:text-brand"
             }`}
           >
             Download Shoutout

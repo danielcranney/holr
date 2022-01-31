@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MadeWithTag } from "../MadeWithTag";
 import { SelectedTag } from "../SelectedTag";
 import Image from "next/image";
+import { StateContext } from "../../pages/_app";
 
-export const BasicAlternative = ({ selectedStyle, setSelectedStyle }) => {
+export const BasicAlternative = () => {
+  const { state, dispatch } = useContext(StateContext);
   return (
     <div
       className={`bg-xlight max-w-128 relative flex flex-col items-center justify-center p-8 rounded-lg hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out ${
-        selectedStyle === "basic-alt" ? "border-brand" : "border-xlight"
+        state.selectedStyle === "basic-alt" ? "border-brand" : "border-xlight"
       }`}
       onClick={() => {
-        setSelectedStyle("basic-alt");
+        dispatch({
+          type: "select-style",
+          payload: "basic-alt",
+        });
       }}
     >
-      {selectedStyle === "basic-alt" ? <SelectedTag /> : null}
+      {state.selectedStyle === "basic-alt" ? <SelectedTag /> : null}
       <div className="inline-flex w-full p-8 bg-white rounded-lg shadow-lg shadow-light/30">
         <div className="flex items-center h-full mr-4 w-72">
           <Image

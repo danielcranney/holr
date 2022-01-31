@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { UserContext } from "../pages/_app";
+import { StateContext } from "../pages/_app";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const GoBackStep = ({ newCount }) => {
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(StateContext);
   const router = useRouter();
 
   return (
@@ -13,7 +13,15 @@ export const GoBackStep = ({ newCount }) => {
         router.push("/");
         dispatch({
           type: "set-count",
-          payload: newCount,
+          payload: 1,
+        });
+        dispatch({
+          type: "search-user",
+          payload: "",
+        });
+        dispatch({
+          type: "set-user-validity",
+          payload: false,
         });
       }}
       className="inline-flex items-center self-start p-3 mb-6 transition-all duration-150 ease-in-out rounded-md bg-opacity-5 bg-brand hover:bg-brand hover:bg-opacity-10 group"

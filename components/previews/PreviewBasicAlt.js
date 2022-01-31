@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StateContext } from "../../pages/_app";
 
-export const PreviewBasicAlternative = ({ cardBgColor }) => {
+export const PreviewBasicAlternative = () => {
+  const { state, dispatch } = useContext(StateContext);
   return (
     <div
       className={`bg-xlight relative flex flex-col items-center justify-center p-8 rounded-lg hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out border-xlight w-full sm:w-96`}
@@ -12,7 +14,9 @@ export const PreviewBasicAlternative = ({ cardBgColor }) => {
 
         <div className="flex-grow">
           <div className="h-6 mb-2 rounded-md w-36 bg-dark"></div>
-          <div className={`h-4 mb-4 rounded-md w-32 ${cardBgColor}`}></div>
+          <div
+            className={`h-4 mb-4 rounded-md w-32 ${state.cardBgColor}`}
+          ></div>
           <div className="flex items-start justify-start space-x-2 w-60">
             <div className={`h-3 rounded-md w-16 bg-light mb-2`}>&nbsp;</div>
             <div className={`h-3 rounded-md w-12 bg-light mb-2`}>&nbsp;</div>

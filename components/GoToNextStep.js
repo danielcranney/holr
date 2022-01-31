@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { UserContext } from "../pages/_app";
+import { StateContext } from "../pages/_app";
 import Link from "next/link";
 
 export const GoToNextStep = ({ newCount, scrollTo }) => {
-  const { state, dispatch } = useContext(UserContext);
+  const { state, dispatch } = useContext(StateContext);
 
   return (
     <Link href={scrollTo}>
