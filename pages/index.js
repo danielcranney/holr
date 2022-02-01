@@ -479,7 +479,7 @@ export default function Home() {
               <p className="mb-6 text-lg">
                 Select one of the pre-made styles below
               </p>
-              <article className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <article className="flex flex-col flex-wrap md:flex-row gap-x-4 gap-y-4">
                 {/* Style 1 - Basic Default */}
                 <BasicDefault />
                 {/* Style 2 - Basic Alternative */}
@@ -497,15 +497,15 @@ export default function Home() {
               ref={editColorsRef}
               className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
             >
-              <article className="flex flex-col w-full lg:flex-row gap-x-0 sm:gap-x-4">
+              <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
+                Step 3
+              </p>
+              <h1 className="mb-2 text-4xl">Edit Colors</h1>
+              <p className="mb-6 text-lg">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              </p>
+              <article className="flex flex-col w-full md:flex-row gap-x-0 sm:gap-x-4">
                 <div className="flex-grow">
-                  <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
-                    Step 3
-                  </p>
-                  <h1 className="mb-2 text-4xl">Edit Colors</h1>
-                  <p className="mb-6 text-lg">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  </p>
                   {/* Color Buttons */}
                   <article className="flex flex-wrap w-auto gap-y-4 gap-x-4">
                     <ColorSquare
@@ -603,7 +603,7 @@ export default function Home() {
                   </article>
                 </div>
                 {/* Preview */}
-                <div className="flex flex-col w-full mt-8 lg:mt-0 sm:w-96">
+                <div className="flex flex-col w-full mt-8 md:mt-0 sm:w-96">
                   {state.selectedStyle === "basic-default" ? (
                     <PreviewBasicDefault />
                   ) : state.selectedStyle === "basic-alt" ? (
@@ -641,7 +641,7 @@ export default function Home() {
                     });
                   }
                 }}
-                className="w-full md:w-1/2 p-3.5 font-bold text-white rounded-lg bg-brand mb-4"
+                className="w-full p-3.5 font-bold text-white rounded-lg bg-brand mb-4"
               >
                 Generate Shoutout
               </button>
@@ -652,14 +652,14 @@ export default function Home() {
               ) : null}
             </section>
           </main>
-          <footer className="flex flex-col items-center w-full mt-12 md:flex-row">
+          <footer className="flex flex-col items-start w-full mt-12 md:items-center md:flex-row">
             <p className="mb-0 text-sm">
               &copy;2022 holr - Designed and built by{" "}
               <a className="font-normal" href="http://www.danielcranney.com">
                 Daniel Cranney
               </a>
             </p>
-            <div className="flex items-center ml-auto">
+            <div className="flex items-center ml-0 md:ml-auto">
               <a
                 className="flex items-center px-2 py-2 text-sm font-normal bg-opacity-0 group hover:bg-opacity-5 bg-brand"
                 href="http://www.twitter.com/danielcranney"

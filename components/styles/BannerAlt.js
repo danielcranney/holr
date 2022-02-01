@@ -8,7 +8,7 @@ export const BannerAlt = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`bg-xlight relative flex flex-col items-center justify-center p-8 rounded-lg  hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out ${
+      className={`bg-xlight w-96 relative flex flex-col items-center justify-center p-6 rounded-lg  hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out ${
         state.selectedStyle === "banner-alt" ? "border-brand" : "border-xlight"
       }`}
       onClick={() => {

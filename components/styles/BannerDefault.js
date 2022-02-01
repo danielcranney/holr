@@ -8,7 +8,7 @@ export const BannerDefault = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`relative p-8 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 ease-in-out ${
+      className={`relative p-6 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 w-96 ease-in-out ${
         state.selectedStyle === "banner-default"
           ? "border-brand"
           : "border-xlight"
