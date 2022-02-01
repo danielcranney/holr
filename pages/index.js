@@ -38,7 +38,7 @@ export default function Home() {
     const offsetBottom = offsetTop + height;
 
     return {
-      height,
+      // height,
       offsetTop,
       offsetBottom,
     };
@@ -63,8 +63,9 @@ export default function Home() {
     ];
 
     const handleScroll = () => {
-      const { height: headerHeight } = getDimensions(findUserRef.current);
-      const scrollPosition = window.scrollY + headerHeight;
+      // const { height: headerHeight } = getDimensions(findUserRef.current);
+      const scrollPosition = window.scrollY;
+      // + headerHeight;
 
       const selected = sectionRefs.find(({ section, ref }) => {
         const ele = ref.current;
@@ -95,7 +96,12 @@ export default function Home() {
         setScrolling(window.pageYOffset > 100)
       );
     }
+    return () => {
+      setScrolling(false);
+    };
   }, []);
+
+  
 
   function handleColorSelection(bg, text) {
     dispatch({
@@ -451,9 +457,8 @@ export default function Home() {
               </form>
 
               {state.errorGenerating ? (
-                <div className="w-1/2 h-8 p-2 mt-6 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md right-2 bg-opacity-10">
-                  Error - You must find a valid user before you can generate
-                  your shoutout!
+                <div className="w-full h-auto p-2 mt-6 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md md:w-1/2 right-2 bg-opacity-10">
+                  Error - Check user is valid and then try again.
                 </div>
               ) : null}
 
