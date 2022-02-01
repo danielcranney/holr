@@ -463,7 +463,7 @@ export default function Home() {
               </form>
 
               {state.errorGenerating ? (
-                <div className="w-full h-auto p-2 mt-6 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md md:w-1/2 right-2 bg-opacity-10">
+                <div className="w-full h-auto p-2 mt-6 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md bg-opacity-10">
                   Error - Check user is valid and then try again.
                 </div>
               ) : null}

@@ -257,6 +257,14 @@ export default function Share(props) {
                     type: "set-count",
                     payload: 1,
                   });
+                  dispatch({
+                    type: "search-user",
+                    payload: "",
+                  });
+                  dispatch({
+                    type: "set-user-validity",
+                    payload: false,
+                  });
                 }}
                 className={`transition-all duration-150 ease-in-out flex group items-center p-3 mb-1 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
                   state.count === 1
