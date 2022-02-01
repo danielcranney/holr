@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
+import html2canvas from "html2canvas";
 
 import Image from "next/image";
 import Head from "next/head";
@@ -52,7 +53,6 @@ const BasicDefault = React.forwardRef((props, ref) => {
 
   return (
     <div
-      ref={ref}
       className={`w-full sm:w-96 relative p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
         `}
     >
@@ -232,10 +232,29 @@ export default function Share(props) {
     });
   }, []);
 
+  const handleDownloadImage = async () => {
+    const element = basicDefaultRef.current;
+    const canvas = await html2canvas(element);
+
+    const data = canvas.toDataURL("image/jpg");
+    const link = document.createElement("a");
+
+    if (typeof link.download === "string") {
+      link.href = data;
+      link.download = "image.jpg";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full max-h-screen">
       <Head>
-        <title>holr | Share Your Shoutout</title>
+        <title>hollr | Share Your Shoutout</title>
         <meta name="description" content="Twitter shoutout machine" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -462,9 +481,8 @@ export default function Share(props) {
             <p>Couldn't fetch information from Twitter</p>
           ) : props.cardStyle === "basic-default" ? (
             <div className="flex flex-col gap-8 lg:flex-row">
-              <article>
+              <article ref={basicDefaultRef} className="w-full sm:w-96">
                 <BasicDefault
-                  ref={basicDefaultRef}
                   twitterInfo={props.twitterInfo}
                   textColor={props.textColor}
                   bgColor={props.bgColor}
@@ -478,6 +496,13 @@ export default function Share(props) {
                 <div className="flex gap-x-4">
                   <button
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                    type="button"
+                    onClick={handleDownloadImage}
+                  >
+                    Download as Image
+                  </button>
+                  {/* <button
+                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {
                       const { exportComponentAsJPEG } = await import(
                         "react-component-export-image"
@@ -486,7 +511,7 @@ export default function Share(props) {
                     }}
                   >
                     Export JPG
-                  </button>
+                  </button> */}
                   <button
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {
