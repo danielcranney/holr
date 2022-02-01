@@ -453,7 +453,7 @@ export default function Share(props) {
         </aside>
         <div className="flex flex-col w-full px-4 py-4 ml-20 lg:py-12 lg:px-12 lg:ml-80">
           <GoBackStep newCount={1} />
-          <h1 className="mb-2 text-4xl">Share your Shoutout</h1>
+          <h1 className="mb-2 text-4xl">Download Shoutout</h1>
           <p className="mb-6 text-lg">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
@@ -475,17 +475,30 @@ export default function Share(props) {
                   We&apos;ve generated an image for you to share in your
                   shoutout. Simply download it as a JPG and tweet it out!
                 </p>
-                <button
-                  className="self-start p-3.5 font-bold text-white rounded-lg bg-brand"
-                  onClick={async () => {
-                    const { exportComponentAsJPEG } = await import(
-                      "react-component-export-image"
-                    );
-                    exportComponentAsJPEG(basicDefaultRef);
-                  }}
-                >
-                  Export As JPEG
-                </button>
+                <div className="flex gap-x-4">
+                  <button
+                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                    onClick={async () => {
+                      const { exportComponentAsJPEG } = await import(
+                        "react-component-export-image"
+                      );
+                      exportComponentAsJPEG(basicDefaultRef);
+                    }}
+                  >
+                    Export JPG
+                  </button>
+                  <button
+                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                    onClick={async () => {
+                      const { exportComponentAsPNG } = await import(
+                        "react-component-export-image"
+                      );
+                      exportComponentAsPNG(basicDefaultRef);
+                    }}
+                  >
+                    Export PNG
+                  </button>
+                </div>
               </article>
             </div>
           ) : props.cardStyle === "basic-alt" ? (

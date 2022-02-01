@@ -385,7 +385,8 @@ export default function Home() {
 
               {state.errorGenerating ? (
                 <div className="w-1/2 h-8 p-2 mt-6 text-xs font-semibold text-center text-red-500 bg-red-500 rounded-md right-2 bg-opacity-10">
-                  Error - Check user is valid
+                  Error - You must find a valid user before you can generate
+                  your shoutout!
                 </div>
               ) : null}
 
