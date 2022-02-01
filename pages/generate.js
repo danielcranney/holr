@@ -476,7 +476,7 @@ export default function Share(props) {
                   shoutout. Simply download it as a JPG and tweet it out!
                 </p>
                 <div className="flex gap-x-4">
-                  <button
+                  <a
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {
                       const { exportComponentAsJPEG } = await import(
@@ -486,7 +486,7 @@ export default function Share(props) {
                     }}
                   >
                     Export JPG
-                  </button>
+                  </a>
                   <button
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {

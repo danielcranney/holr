@@ -101,8 +101,6 @@ export default function Home() {
     };
   }, []);
 
-  
-
   function handleColorSelection(bg, text) {
     dispatch({
       type: "set-bg-color",
@@ -167,7 +165,7 @@ export default function Home() {
               </svg>
             </div>
             <h1 className="hidden mb-0 text-3xl font-semibold lg:block">
-              holr
+              hollr
             </h1>
           </div>
           <div className="flex flex-col">
@@ -366,7 +364,7 @@ export default function Home() {
         <div className="flex flex-col w-full px-4 pb-12 ml-20 lg:px-12 lg:ml-80">
           <main className="w-full">
             <Head>
-              <title>holr | Create a Shoutout on Twitter</title>
+              <title>hollr | Create a Twitter Shoutout</title>
               <meta name="description" content="Twitter shoutout machine" />
               <link rel="icon" href="/favicon.ico" />
             </Head>
