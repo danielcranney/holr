@@ -482,7 +482,7 @@ export default function Share(props) {
                       const { exportComponentAsJPEG } = await import(
                         "react-component-export-image"
                       );
-                      window.open(exportComponentAsJPEG(basicDefaultRef));
+                      exportComponentAsJPEG(basicDefaultRef);
                     }}
                   >
                     Export JPG
