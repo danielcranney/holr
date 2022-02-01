@@ -641,7 +641,7 @@ export default function Home() {
                     });
                   }
                 }}
-                className="w-1/2 p-3.5 font-bold text-white rounded-lg bg-brand mb-4"
+                className="w-full md:w-1/2 p-3.5 font-bold text-white rounded-lg bg-brand mb-4"
               >
                 Generate Shoutout
               </button>
@@ -652,7 +652,7 @@ export default function Home() {
               ) : null}
             </section>
           </main>
-          <footer className="flex items-center w-full mt-12">
+          <footer className="flex flex-col items-center w-full mt-12 md:flex-row">
             <p className="mb-0 text-sm">
               &copy;2022 holr - Designed and built by{" "}
               <a className="font-normal" href="http://www.danielcranney.com">
