@@ -192,7 +192,7 @@ function BannerAlternative(props) {
   );
 }
 
-export default function Share(props) {
+export default function Generate(props) {
   const basicDefaultRef = useRef();
   const router = useRouter();
   console.log(props);
