@@ -494,24 +494,14 @@ export default function Share(props) {
                   shoutout. Simply download it as a JPG and tweet it out!
                 </p>
                 <div className="flex gap-x-4">
-                  <button
+                  <a
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     type="button"
                     onClick={handleDownloadImage}
                   >
                     Download as Image
-                  </button>
-                  {/* <button
-                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
-                    onClick={async () => {
-                      const { exportComponentAsJPEG } = await import(
-                        "react-component-export-image"
-                      );
-                      exportComponentAsJPEG(basicDefaultRef);
-                    }}
-                  >
-                    Export JPG
-                  </button> */}
+                  </a>
+
                   <button
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {
