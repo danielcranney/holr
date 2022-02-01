@@ -479,10 +479,10 @@ export default function Share(props) {
                   <button
                     className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
                     onClick={async () => {
-                      const { exportComponentAsJPEG } = window.open(
-                        await import("react-component-export-image")
+                      const { exportComponentAsJPEG } = await import(
+                        "react-component-export-image"
                       );
-                      exportComponentAsJPEG(basicDefaultRef);
+                      window.open(exportComponentAsJPEG(basicDefaultRef));
                     }}
                   >
                     Export JPG
