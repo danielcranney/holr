@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        94: "23.5rem",
+        92: "23rem",
+      },
       colors: {
         brand: "#0097dd",
         brandLight: "#11a7ec",
