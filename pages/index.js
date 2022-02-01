@@ -383,40 +383,44 @@ export default function Home() {
                 Using the box below, search for a Twitter user to create a
                 shoutout for.
               </p>
-              <form className="relative flex">
-                <label className="flex items-center justify-center w-12 h-12 text-xl font-bold text-white rounded-tl-lg rounded-bl-lg bg-mid">
-                  @
-                </label>
-                <input
-                  className="w-full h-12 px-3 py-4 text-lg bg-white border rounded-tr-lg rounded-br-lg appearance-none placeholder:text-mid text-dark border-xlight focus:outline-none"
-                  placeholder="username"
-                  ref={searchRef}
-                  onChange={() => {
-                    if (
-                      searchRef.current.value.length < 2 ||
-                      searchRef.current.value.length > 15
-                    ) {
-                      console.log("Username is less than 2 or greater than 15");
-                      dispatch({
-                        type: "search-user",
-                        payload: "",
-                      });
-                      dispatch({
-                        type: "set-user-validity",
-                        payload: false,
-                      });
-                    } else {
-                      dispatch({
-                        type: "search-user",
-                        payload: searchRef.current.value,
-                      });
-                      ValidateUser(searchRef.current.value);
-                    }
-                  }}
-                />
+              <form className="relative flex flex-col">
+                <div className="flex">
+                  <label className="flex items-center justify-center w-12 h-12 text-xl font-bold text-white rounded-tl-lg rounded-bl-lg bg-mid">
+                    @
+                  </label>
+                  <input
+                    className="w-full h-12 px-3 py-4 text-lg bg-white border rounded-tr-lg rounded-br-lg appearance-none placeholder:text-mid text-dark border-xlight focus:outline-none"
+                    placeholder="username"
+                    ref={searchRef}
+                    onChange={() => {
+                      if (
+                        searchRef.current.value.length < 2 ||
+                        searchRef.current.value.length > 15
+                      ) {
+                        console.log(
+                          "Username is less than 2 or greater than 15"
+                        );
+                        dispatch({
+                          type: "search-user",
+                          payload: "",
+                        });
+                        dispatch({
+                          type: "set-user-validity",
+                          payload: false,
+                        });
+                      } else {
+                        dispatch({
+                          type: "search-user",
+                          payload: searchRef.current.value,
+                        });
+                        ValidateUser(searchRef.current.value);
+                      }
+                    }}
+                  />
+                </div>
 
                 {!state.userValid ? (
-                  <p className="absolute flex items-center w-auto h-8 p-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase -translate-y-1/2 bg-red-500 rounded-md right-2 top-1/2 bg-opacity-10">
+                  <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase bg-red-500 rounded-md -translate-y-0 md:mt-0 md:-translate-y-1/2 md:absolute md:right-2 md:top-1/2 bg-opacity-10">
                     <svg
                       className="w-4 h-4 mr-1.5 text-red-500"
                       fill="none"

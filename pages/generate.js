@@ -9,37 +9,10 @@ import { MadeWithTag } from "../components/MadeWithTag";
 import MainLayout from "../components/MainLayout";
 import { urlObjectKeys } from "next/dist/shared/lib/utils";
 import { useRouter } from "next/router";
-
 import { StateContext } from "./_app";
 import { GoBackStep } from "../components/StartAgainButton";
 
-// function TwitterCard(props) {
-//   console.log(props);
-//   let profileImageURL = props.twitterInfo.profileImageURL.replace(
-//     /_normal/g,
-//     ""
-//   );
-
-//   return (
-//     <div className="w-auto p-2 overflow-hidden border rounded-md">
-//       <div className="relative">
-//         <img className="mx-auto" src={props.twitterInfo.profileBannerURL} />
-//         <div className="absolute border-4 border-white rounded-full top-14 left-4 lg:top-24">
-//           <img className="w-24 h-24 rounded-full" src={profileImageURL} />
-//         </div>
-//       </div>
-//       <div className="px-4 mt-28 lg:mt-16">
-//         <p className="text-lg font-bold leading-6">{props.twitterInfo.name}</p>
-//         <p className="text-sm text-gray-600">@{props.twitterInfo.screenName}</p>
-//         <p className="mt-4 text-sm whitespace-pre-wrap">
-//           {props.twitterInfo.description}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
-const BasicDefault = React.forwardRef((props, ref) => {
+const BasicDefault = (props) => {
   console.log(props);
   let twitterName = props.twitterInfo.name;
   let twitterScreenName = props.twitterInfo.screenName;
@@ -62,7 +35,7 @@ const BasicDefault = React.forwardRef((props, ref) => {
             src={profileImageURL}
             width={102}
             height={102}
-            className="object-scale-down overflow-hidden rounded-full"
+            className="object-scale-down rounded-full"
           />
         </div>
         <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
@@ -76,7 +49,7 @@ const BasicDefault = React.forwardRef((props, ref) => {
       <MadeWithTag />
     </div>
   );
-});
+};
 
 function BasicAlternative(props) {
   console.log(props);
@@ -232,16 +205,16 @@ export default function Share(props) {
     });
   }, []);
 
-  const handleDownloadImage = async () => {
-    const element = basicDefaultRef.current;
+  const handleDownloadImage = async (elementRef, type) => {
+    const element = elementRef.current;
     const canvas = await html2canvas(element);
 
-    const data = canvas.toDataURL("image/jpg");
+    const data = canvas.toDataURL("image/" + type);
     const link = document.createElement("a");
 
     if (typeof link.download === "string") {
       link.href = data;
-      link.download = "image.jpg";
+      link.download = "shoutout." + type;
 
       document.body.appendChild(link);
       link.click();
@@ -480,42 +453,36 @@ export default function Share(props) {
           {!props.twitterInfo ? (
             <p>Couldn't fetch information from Twitter</p>
           ) : props.cardStyle === "basic-default" ? (
-            <div className="flex flex-col gap-8 lg:flex-row">
-              <article ref={basicDefaultRef} className="w-full sm:w-96">
+            <article className="flex flex-col gap-8 mb-8">
+              <div className="flex gap-x-4">
+                <button
+                  className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                  type="button"
+                  onClick={() => {
+                    handleDownloadImage(basicDefaultRef, "jpg");
+                  }}
+                >
+                  Download JPG
+                </button>
+
+                <button
+                  className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                  onClick={() => {
+                    handleDownloadImage(basicDefaultRef, "png");
+                  }}
+                >
+                  Download PNG
+                </button>
+              </div>
+
+              <div ref={basicDefaultRef} className="w-full sm:w-96">
                 <BasicDefault
                   twitterInfo={props.twitterInfo}
                   textColor={props.textColor}
                   bgColor={props.bgColor}
                 />
-              </article>
-              <article className="flex flex-col">
-                <p className="mb-6 text-lg">
-                  We&apos;ve generated an image for you to share in your
-                  shoutout. Simply download it as a JPG and tweet it out!
-                </p>
-                <div className="flex gap-x-4">
-                  <a
-                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
-                    type="button"
-                    onClick={handleDownloadImage}
-                  >
-                    Download as Image
-                  </a>
-
-                  <button
-                    className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
-                    onClick={async () => {
-                      const { exportComponentAsPNG } = await import(
-                        "react-component-export-image"
-                      );
-                      exportComponentAsPNG(basicDefaultRef);
-                    }}
-                  >
-                    Export PNG
-                  </button>
-                </div>
-              </article>
-            </div>
+              </div>
+            </article>
           ) : props.cardStyle === "basic-alt" ? (
             <BasicAlternative
               twitterInfo={props.twitterInfo}
