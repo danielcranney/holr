@@ -29,6 +29,73 @@ export default function Home() {
   const { state, dispatch } = useContext(StateContext);
   const searchRef = useRef(null);
   const router = useRouter();
+  const [visibleSection, setVisibleSection] = useState();
+  const [scrolling, setScrolling] = useState(false);
+
+  const getDimensions = (ele) => {
+    const { height } = ele.getBoundingClientRect();
+    const offsetTop = ele.offsetTop;
+    const offsetBottom = offsetTop + height;
+
+    return {
+      height,
+      offsetTop,
+      offsetBottom,
+    };
+  };
+
+  const scrollTo = (ele) => {
+    ele.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const findUserRef = useRef(null);
+  const selectStyleRef = useRef(null);
+  const editColorsRef = useRef(null);
+
+  useEffect(() => {
+    const sectionRefs = [
+      { section: "findUser", ref: findUserRef, id: 1 },
+      { section: "selectStyle", ref: selectStyleRef, id: 2 },
+      { section: "editColors", ref: editColorsRef, id: 3 },
+    ];
+
+    const handleScroll = () => {
+      const { height: headerHeight } = getDimensions(findUserRef.current);
+      const scrollPosition = window.scrollY + headerHeight;
+
+      const selected = sectionRefs.find(({ section, ref }) => {
+        const ele = ref.current;
+        if (ele) {
+          const { offsetBottom, offsetTop } = getDimensions(ele);
+          return scrollPosition >= offsetTop && scrollPosition <= offsetBottom;
+        }
+      });
+
+      if (selected && selected.section !== visibleSection) {
+        setVisibleSection(selected.section);
+        // console.log(visibleSection);
+      } else if (!selected && visibleSection) {
+        setVisibleSection(undefined);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [visibleSection]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", () =>
+        setScrolling(window.pageYOffset > 100)
+      );
+    }
+  }, []);
 
   function handleColorSelection(bg, text) {
     dispatch({
@@ -98,135 +165,134 @@ export default function Home() {
             </h1>
           </div>
           <div className="flex flex-col">
-            <Link href="#find-user">
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "set-count",
-                    payload: 1,
-                  });
-                }}
-                className={`transition-all duration-150 ease-in-out flex group items-center p-3 mb-1 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
-                  state.count === 1
-                    ? "bg-opacity-5 bg-brand"
-                    : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+            <button
+              onClick={() => {
+                scrollTo(findUserRef.current);
+                dispatch({
+                  type: "set-count",
+                  payload: 1,
+                });
+              }}
+              className={`transition-all duration-150 ease-in-out flex group items-center p-3 mb-1 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+                visibleSection === "findUser"
+                  ? "bg-opacity-5 bg-brand"
+                  : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+              }`}
+            >
+              <svg
+                className={`w-5 h-5 mr-0 lg:mr-3 ${
+                  visibleSection === "findUser"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+              <p
+                className={`mb-0 text-lg hidden lg:inline-flex ${
+                  visibleSection === "findUser"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
                 }`}
               >
-                <svg
-                  className={`w-5 h-5 mr-0 lg:mr-3 ${
-                    state.count === 1
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  ></path>
-                </svg>
-                <p
-                  className={`mb-0 text-lg hidden lg:inline-flex ${
-                    state.count === 1
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                >
-                  Find user
-                </p>
-              </button>
-            </Link>
-            <Link href="#select-style">
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "set-count",
-                    payload: 2,
-                  });
-                }}
-                className={`transition-all duration-150 ease-in-out mb-1 flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
-                  state.count === 2
-                    ? "bg-opacity-5 bg-brand"
-                    : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+                Find user
+              </p>
+            </button>
+
+            <button
+              onClick={() => {
+                scrollTo(selectStyleRef.current);
+                dispatch({
+                  type: "set-count",
+                  payload: 2,
+                });
+              }}
+              className={`transition-all duration-150 ease-in-out mb-1 flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+                visibleSection === "selectStyle"
+                  ? "bg-opacity-5 bg-brand"
+                  : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+              }`}
+            >
+              <svg
+                className={`w-5 h-5 mr-0 lg:mr-3 ${
+                  visibleSection === "selectStyle"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                ></path>
+              </svg>
+              <p
+                className={`mb-0 text-lg hidden lg:inline-flex ${
+                  visibleSection === "selectStyle"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
                 }`}
               >
-                <svg
-                  className={`w-5 h-5 mr-0 lg:mr-3 ${
-                    state.count === 2
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                  ></path>
-                </svg>
-                <p
-                  className={`mb-0 text-lg hidden lg:inline-flex ${
-                    state.count === 2
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                >
-                  Select Style
-                </p>
-              </button>
-            </Link>
-            <Link href="#edit-colors">
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "set-count",
-                    payload: 3,
-                  });
-                }}
-                className={`transition-all duration-150 mb-1 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
-                  state.count === 3
-                    ? "bg-opacity-5 bg-brand"
-                    : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+                Select Style
+              </p>
+            </button>
+
+            <button
+              onClick={() => {
+                scrollTo(editColorsRef.current);
+                dispatch({
+                  type: "set-count",
+                  payload: 3,
+                });
+              }}
+              className={`transition-all duration-150 mb-1 ease-in-out flex group items-center p-3 text-left rounded-md hover:cursor-pointer justify-center lg:justify-start ${
+                visibleSection === "editColors"
+                  ? "bg-opacity-5 bg-brand"
+                  : "bg-opacity-0 bg-transparent hover:bg-opacity-5 hover:bg-brand"
+              }`}
+            >
+              <svg
+                className={`w-5 h-5 mr-0 lg:mr-3 ${
+                  visibleSection === "editColors"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                ></path>
+              </svg>
+              <p
+                className={`mb-0 text-lg hidden lg:inline-flex ${
+                  visibleSection === "editColors"
+                    ? "text-brand"
+                    : "text-mid group-hover:text-brand"
                 }`}
               >
-                <svg
-                  className={`w-5 h-5 mr-0 lg:mr-3 ${
-                    state.count === 3
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  ></path>
-                </svg>
-                <p
-                  className={`mb-0 text-lg hidden lg:inline-flex ${
-                    state.count === 3
-                      ? "text-brand"
-                      : "text-mid group-hover:text-brand"
-                  }`}
-                >
-                  Edit Colors
-                </p>
-              </button>
-            </Link>
+                Edit Colors
+              </p>
+            </button>
             <button
               onClick={() => {
                 if (state.userValid) {
@@ -299,9 +365,10 @@ export default function Home() {
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            {/* Search Section */}
+            {/* Find User Section */}
             <section
               id="find-user"
+              ref={findUserRef}
               className="flex flex-col py-4 border-b-2 lg:py-12 border-xlight"
             >
               <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
@@ -395,6 +462,7 @@ export default function Home() {
             {/* Select Style */}
             <section
               id="select-style"
+              ref={selectStyleRef}
               className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
             >
               <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
@@ -419,6 +487,7 @@ export default function Home() {
             {/* Edit Colors */}
             <section
               id="edit-colors"
+              ref={editColorsRef}
               className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
             >
               <article className="flex flex-col w-full lg:flex-row gap-x-0 sm:gap-x-4">
