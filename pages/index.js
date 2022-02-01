@@ -420,7 +420,7 @@ export default function Home() {
                 </div>
 
                 {!state.userValid ? (
-                  <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase bg-red-500 rounded-md -translate-y-0 md:mt-0 md:-translate-y-1/2 md:absolute md:right-2 md:top-1/2 bg-opacity-10">
+                  <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase bg-red-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
                     <svg
                       className="w-4 h-4 mr-1.5 text-red-500"
                       fill="none"
@@ -438,7 +438,7 @@ export default function Home() {
                     User not valid
                   </p>
                 ) : (
-                  <p className="absolute flex items-center w-auto h-8 p-2 mb-0 text-xs font-semibold tracking-wider text-green-500 uppercase -translate-y-1/2 bg-green-500 rounded-md right-2 top-1/2 bg-opacity-10">
+                  <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-green-500 uppercase bg-green-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
                     <svg
                       className="w-4 h-4 mr-1.5 text-green-500"
                       fill="none"
