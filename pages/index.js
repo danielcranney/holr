@@ -152,7 +152,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full max-h-screen">
-      <aside className="fixed top-0 flex flex-col w-20 h-full bg-white border-r lg:w-80 border-xlight">
+      <aside className="fixed top-0 flex flex-col w-20 h-full p-4 bg-white border-r lg:p-8 lg:w-80 border-xlight">
         <div className="flex items-center mb-8">
           <div className="flex items-center justify-center w-12 h-12 mr-0 lg:mr-2 rounded-2xl bg-brand">
             <svg
@@ -362,11 +362,15 @@ export default function Home() {
         </div>
         <SidebarFooter />
       </aside>
-      <div className="flex flex-col w-full ml-20 lg:ml-80">
+      <div className="flex flex-col w-full px-4 pb-12 ml-20 lg:px-12 lg:ml-80">
         <main className="w-full">
           <Head>
             <title>hollr | Create a Twitter Shoutout</title>
             <meta name="description" content="Twitter shoutout machine" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+            ></meta>
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
