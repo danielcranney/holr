@@ -607,7 +607,7 @@ export default function Home() {
                   </article>
                 </div>
                 {/* Preview */}
-                <div className="flex flex-col w-full mt-8 md:mt-0 sm:w-96">
+                <div className="flex flex-col mt-8 w-86 md:mt-0 sm:w-96">
                   {state.selectedStyle === "basic-default" ? (
                     <PreviewBasicDefault />
                   ) : state.selectedStyle === "basic-alt" ? (

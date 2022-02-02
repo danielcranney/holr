@@ -5,9 +5,9 @@ export const PreviewBasicAlternative = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`items-center flex flex-col relative p-6 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out w-92 sm:w-96`}
+      className={`items-center flex flex-col relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out w-86 sm:w-96`}
     >
-      <div className="relative flex items-center p-8 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
+      <div className="relative flex items-center p-6 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
         <div className="z-20 flex w-24 mr-4">
           <div className="w-24 h-24 bg-gray-300 rounded-full"></div>
         </div>

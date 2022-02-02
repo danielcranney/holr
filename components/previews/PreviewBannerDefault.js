@@ -5,9 +5,9 @@ export const PreviewBannerDefault = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`items-center flex flex-col relative p-6 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out w-92 sm:w-96`}
+      className={`items-center flex flex-col relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out w-86 sm:w-96`}
     >
-      <div className="relative flex flex-col items-center justify-center p-8 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
+      <div className="relative flex flex-col items-center justify-center p-6 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
         <div
           className={`absolute top-0 z-10 w-full overflow-hidden ${state.cardBgColor} h-28`}
         >
