@@ -33,8 +33,9 @@ const BasicDefault = (props) => {
         <div className="w-24">
           <Image
             src={profileImageURL}
-            width={102}
-            height={102}
+            width={51}
+            height={51}
+            layout="responsive"
             className="object-scale-down rounded-full"
           />
         </div>
@@ -220,6 +221,7 @@ export default function Generate(props) {
       link.click();
       document.body.removeChild(link);
     } else {
+      console.log("There is something wrong in the function ");
       window.open(data);
     }
   };
@@ -464,7 +466,7 @@ export default function Generate(props) {
             <article className="flex flex-col gap-8 mb-8">
               <div className="flex gap-x-4">
                 <button
-                  className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
                   type="button"
                   onClick={() => {
                     handleDownloadImage(basicDefaultRef, "jpg");
@@ -474,7 +476,7 @@ export default function Generate(props) {
                 </button>
 
                 <button
-                  className="self-start p-3.5 font-bold text-white rounded-lg bg-brand text-base"
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
                   onClick={() => {
                     handleDownloadImage(basicDefaultRef, "png");
                   }}
