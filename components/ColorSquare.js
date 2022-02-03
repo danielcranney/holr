@@ -6,7 +6,7 @@ export const ColorSquare = ({ bgColor, textColor, handleColorSelection }) => {
       onClick={() => {
         handleColorSelection(bgColor, textColor);
       }}
-      className={`w-12 h-12 ${bgColor} rounded-lg`}
+      className={`w-10 h-10 ${bgColor} rounded-lg`}
     ></button>
   );
 };

@@ -516,7 +516,7 @@ export default function Home() {
           <article className="flex flex-col w-full md:flex-row gap-x-0 sm:gap-x-4">
             <div className="flex-grow">
               {/* Color Buttons */}
-              <article className="flex flex-wrap w-auto gap-y-4 gap-x-4">
+              <article className="flex flex-wrap w-auto gap-y-2 gap-x-2">
                 <ColorSquare
                   bgColor={`bg-slate-500`}
                   textColor={`text-slate-500`}
@@ -626,7 +626,7 @@ export default function Home() {
           </article>
         </section>
         {/* Generate Button */}
-        <section className="flex flex-col pt-10 border-b-2 border-xlight">
+        <section className="flex flex-col pt-12 pb-2">
           <button
             onClick={() => {
               if (state.userValid) {

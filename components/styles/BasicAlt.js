@@ -8,7 +8,7 @@ export const BasicAlternative = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`bg-xlight w-70 sm:w-96 relative flex flex-col items-center justify-center p-3 md:p-6 rounded-lg hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out ${
+      className={`bg-xlight w-66 ip12:w-70 sm:w-96 relative flex flex-col items-center justify-center p-3 md:p-6 rounded-lg hover:cursor-pointer border-4 group transition-all duration-150 ease-in-out ${
         state.selectedStyle === "basic-alt" ? "border-brand" : "border-xlight"
       }`}
       onClick={() => {

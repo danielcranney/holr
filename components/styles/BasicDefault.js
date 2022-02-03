@@ -8,7 +8,7 @@ export const BasicDefault = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`relative p-3 md:p-6 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 ease-in-out w-70 sm:w-96 ${
+      className={`relative p-3 md:p-6 rounded-lg bg-xlight border-4 hover:cursor-pointer group transition-all duration-150 ease-in-out w-66 ip12:w-70 sm:w-96 ${
         state.selectedStyle === "basic-default"
           ? "border-brand"
           : "border-xlight"

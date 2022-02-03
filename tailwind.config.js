@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
@@ -6,10 +6,19 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      ipx: "375px",
+      ip12: "390px",
+      ...defaultTheme.screens,
+    },
     extend: {
       spacing: {
+        14: "3.5rem",
         18: "4.5rem",
+        19: "4.75rem",
         22: "5.5rem",
+        56: "14rem",
+        58: "14.5rem",
         62: "15.5rem",
         66: "16.5rem",
         68: "17rem",

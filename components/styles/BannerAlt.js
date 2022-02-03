@@ -8,7 +8,7 @@ export const BannerAlt = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`bg-xlight w-70 sm:w-96 relative flex flex-col items-center justify-center p-3 md:p-6 rounded-lg hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out ${
+      className={`bg-xlight w-66 ip12:w-70 sm:w-96 relative flex flex-col items-center justify-center p-3 md:p-6 rounded-lg hover:cursor-pointer border-4 group transition-all duration-150 ease-in-out ${
         state.selectedStyle === "banner-alt" ? "border-brand" : "border-xlight"
       }`}
       onClick={() => {
@@ -20,7 +20,7 @@ export const BannerAlt = () => {
     >
       {state.selectedStyle === "banner-alt" ? <SelectedTag /> : null}
       <div className="relative flex items-center w-full p-6 overflow-hidden bg-white rounded-lg shadow-lg md:p-8 shadow-light/30">
-        <div className="absolute top-0 left-0 w-12 h-full overflow-hidden bg-blue-500 sm:w-20">
+        <div className="absolute top-0 left-0 h-full overflow-hidden bg-blue-500 w-14 sm:w-20">
           <div className="bg-[url('/profile.jpg')] h-full bg-center opacity-20"></div>
         </div>
         <div className="flex items-center h-full mr-4 w-72">

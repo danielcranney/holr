@@ -5,7 +5,7 @@ export const PreviewBannerAlternative = () => {
   const { state, dispatch } = useContext(StateContext);
   return (
     <div
-      className={`w-70 sm:w-96 bg-xlight relative flex flex-col items-center justify-center p-4 md:p-8 rounded-lg hover:cursor-pointer group transition-all duration-150 ease-in-out`}
+      className={`w-full ipx:w-66 ip12:w-70 sm:w-96 bg-xlight relative flex flex-col items-center justify-center p-4 md:p-8 rounded-lg hover:cursor-pointer group transition-all duration-150 ease-in-out`}
     >
       <div className="relative flex items-center p-6 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
         <div

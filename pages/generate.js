@@ -26,10 +26,10 @@ const BasicDefault = (props) => {
 
   return (
     <div
-      className={`w-full sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
+      className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
         `}
     >
-      <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-lg">
+      <div className="relative flex flex-col items-center justify-center p-6 bg-white rounded-lg md:p-8">
         <div className="w-24 mb-2">
           <Image
             src={profileImageURL}
@@ -67,18 +67,19 @@ function BasicAlternative(props) {
 
   return (
     <div
-      className={`bg-xlight relative flex flex-col items-start justify-center p-8 rounded-lg  hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out border-xlight`}
+      className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
-      <div className="grid grid-cols-3 gap-6 p-8 bg-white rounded-lg shadow-lg shadow-light/30">
-        <div className="flex items-center h-full col-span-1">
+      <div className="flex items-center p-6 bg-white rounded-lg gap-x-4 md:p-8">
+        <div className="w-24">
           <Image
             src={profileImageURL}
-            width={486}
-            height={486}
-            className="object-scale-down overflow-hidden rounded-full"
+            width={51}
+            height={51}
+            layout="responsive"
+            className="object-scale-down rounded-full"
           />
         </div>
-        <div className="col-span-2">
+        <div className="flex-grow">
           <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
           <p className={`text-base font-semibold tracking-wider ${textColor}`}>
             @{twitterScreenName}
@@ -108,11 +109,11 @@ function BannerDefault(props) {
 
   return (
     <div
-      className={`relative p-8 rounded-lg bg-xlight border-8 hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
+      className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
-      <div className="relative flex flex-col items-center justify-center p-8 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
+      <div className="relative flex flex-col items-center justify-center p-6 overflow-hidden bg-white rounded-lg md:p-8">
         <div
-          className={`absolute top-0 w-full overflow-hidden ${bgColor} h-28`}
+          className={`absolute top-0 w-full overflow-hidden ${bgColor} h-24`}
         >
           <div
             className={`h-full bg-center bg-cover opacity-20`}
@@ -121,15 +122,14 @@ function BannerDefault(props) {
             }}
           ></div>
         </div>
-        <div className="w-1/3">
-          <div className="bg-white border-2 border-white">
-            <Image
-              src={profileImageURL}
-              width={486}
-              height={486}
-              className="object-scale-down overflow-hidden rounded-full"
-            />
-          </div>
+        <div className="w-24">
+          <Image
+            src={profileImageURL}
+            width={51}
+            height={51}
+            layout="responsive"
+            className="object-scale-down rounded-full"
+          />
         </div>
         <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
         <p className={`text-base font-semibold tracking-wider ${textColor}`}>
@@ -159,11 +159,11 @@ function BannerAlternative(props) {
 
   return (
     <div
-      className={`bg-xlight relative flex flex-col items-start justify-center p-8 rounded-lg  hover:cursor-pointer border-8 group transition-all duration-150 ease-in-out border-xlight`}
+      className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
-      <div className="relative grid grid-cols-3 gap-6 p-8 overflow-hidden bg-white rounded-lg shadow-lg shadow-light/30">
+      <div className="relative flex items-center p-6 overflow-hidden bg-white rounded-lg gap-x-4 md:p-8">
         <div
-          className={`absolute top-0 left-0 w-20 h-full overflow-hidden ${bgColor}`}
+          className={`absolute top-0 left-0 w-14 sm:w-19 md:w-18 h-full overflow-hidden ${bgColor}`}
         >
           <div
             className={`h-full bg-center opacity-20`}
@@ -197,6 +197,10 @@ function BannerAlternative(props) {
 
 export default function Generate(props) {
   const basicDefaultRef = useRef();
+  const basicAltRef = useRef();
+  const bannerDefaultRef = useRef();
+  const bannerAltRef = useRef();
+
   const router = useRouter();
   console.log(props);
   const { state, dispatch } = useContext(StateContext);
@@ -496,23 +500,98 @@ export default function Generate(props) {
               </div>
             </article>
           ) : props.cardStyle === "basic-alt" ? (
-            <BasicAlternative
-              twitterInfo={props.twitterInfo}
-              textColor={props.textColor}
-              bgColor={props.bgColor}
-            />
+            <article className="flex flex-col gap-8 mb-8">
+              <div className="flex gap-x-4">
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  type="button"
+                  onClick={() => {
+                    handleDownloadImage(basicAltRef, "jpg");
+                  }}
+                >
+                  Download JPG
+                </button>
+
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  onClick={() => {
+                    handleDownloadImage(basicAltRef, "png");
+                  }}
+                >
+                  Download PNG
+                </button>
+              </div>
+
+              <div ref={basicAltRef} className="w-full sm:w-96">
+                <BasicAlternative
+                  twitterInfo={props.twitterInfo}
+                  textColor={props.textColor}
+                  bgColor={props.bgColor}
+                />
+              </div>
+            </article>
           ) : props.cardStyle === "banner-default" ? (
-            <BannerDefault
-              twitterInfo={props.twitterInfo}
-              textColor={props.textColor}
-              bgColor={props.bgColor}
-            />
+            <article className="flex flex-col gap-8 mb-8">
+              <div className="flex gap-x-4">
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  type="button"
+                  onClick={() => {
+                    handleDownloadImage(bannerDefaultRef, "jpg");
+                  }}
+                >
+                  Download JPG
+                </button>
+
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  onClick={() => {
+                    handleDownloadImage(bannerDefaultRef, "png");
+                  }}
+                >
+                  Download PNG
+                </button>
+              </div>
+
+              <div ref={bannerDefaultRef} className="w-full sm:w-96">
+                <BannerDefault
+                  twitterInfo={props.twitterInfo}
+                  textColor={props.textColor}
+                  bgColor={props.bgColor}
+                />
+              </div>
+            </article>
           ) : props.cardStyle === "banner-alt" ? (
-            <BannerAlternative
-              twitterInfo={props.twitterInfo}
-              textColor={props.textColor}
-              bgColor={props.bgColor}
-            />
+            <article className="flex flex-col gap-8 mb-8">
+              <div className="flex gap-x-4">
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  type="button"
+                  onClick={() => {
+                    handleDownloadImage(bannerDefaultRef, "jpg");
+                  }}
+                >
+                  Download JPG
+                </button>
+
+                <button
+                  className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
+                  onClick={() => {
+                    handleDownloadImage(bannerDefaultRef, "png");
+                  }}
+                >
+                  Download PNG
+                </button>
+              </div>
+
+              <div ref={bannerDefaultRef} className="w-full sm:w-96">
+                <BannerAlternative
+                  twitterInfo={props.twitterInfo}
+                  textColor={props.textColor}
+                  bgColor={props.bgColor}
+                />
+              </div>
+            </article>
           ) : null}
         </div>
       </div>
