@@ -34,10 +34,10 @@ export const BannerDefault = () => {
           />
         </div>
         <h1 className="mb-1 text-xl font-bold sm:text-2xl text-dark">
-          Sara Jenkins
+          Lauren Jenkins
         </h1>
-        <h2 className="text-base font-semibold tracking-wider text-brand">
-          @sarajenkins90
+        <h2 className="text-xs font-semibold tracking-wider sm:text-base text-brand">
+          @laurenjenkins90
         </h2>
         <p className="mb-0 text-sm tracking-wide text-center text-mid">
           A designer and developer in Queensland, Australia. Coding by day,

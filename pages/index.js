@@ -87,16 +87,20 @@ export default function Home() {
 
     console.log(visibleSection);
 
-    contentWrapperRef.current.addEventListener("scroll", handleScroll);
-    return () => {
-      contentWrapperRef.current.removeEventListener("scroll", handleScroll);
-    };
-  }, [visibleSection]);
+    contentWrapperRef.current.addEventListener("scroll", handleScroll, true);
+    // return () => {
+    //   contentWrapperRef.current.removeEventListener(
+    //     "scroll",
+    //     handleScroll,
+    //     true
+    //   );
+    // };
+  }, [visibleSection, scrolling]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       contentWrapperRef.current.addEventListener("scroll", () =>
-        setScrolling(contentWrapperRef.pageYOffset >= 0)
+        setScrolling(contentWrapperRef.current.pageYOffset >= 0)
       );
     }
     return () => {
@@ -162,7 +166,10 @@ export default function Home() {
         ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <aside className="flex flex-col w-20 p-4 bg-white lg:w-80" id="sidebar">
+      <aside
+        className="flex flex-col w-20 p-4 bg-white lg:p-8 lg:w-80"
+        id="sidebar"
+      >
         <div className="flex items-center mb-8">
           <div className="flex items-center justify-center w-12 h-12 mr-0 lg:mr-2 rounded-2xl bg-brand">
             <svg
@@ -373,7 +380,7 @@ export default function Home() {
         <SidebarFooter />
       </aside>
       <div
-        className="flex flex-col flex-1 px-4 pb-4 overflow-y-auto lg:px-12 lg:pb-12 bg-xxlight"
+        className="flex flex-col flex-1 px-4 pb-4 overflow-y-auto lg:px-8 lg:pb-8 bg-xxlight"
         id="content-wrapper"
         ref={contentWrapperRef}
       >
@@ -381,7 +388,7 @@ export default function Home() {
         <section
           id="find-user"
           ref={findUserRef}
-          className="flex flex-col py-4 border-b-2 lg:py-12 border-xlight"
+          className="flex flex-col py-4 border-b-2 lg:py-8 border-xlight"
         >
           <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
             Step 1
@@ -476,7 +483,7 @@ export default function Home() {
         <section
           id="select-style"
           ref={selectStyleRef}
-          className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
+          className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-8 lg:pt-8 border-xlight"
         >
           <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
             Step 2
@@ -501,7 +508,7 @@ export default function Home() {
         <section
           id="edit-colors"
           ref={editColorsRef}
-          className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-12 lg:pt-12 border-xlight"
+          className="flex flex-col pt-4 pb-4 border-b-2 lg:pb-8 lg:pt-8 border-xlight"
         >
           <p className="mb-0 font-semibold tracking-wide uppercase text-mid">
             Step 3
@@ -623,7 +630,7 @@ export default function Home() {
           </article>
         </section>
         {/* Generate Button */}
-        <section className="flex flex-col pt-12 border-b-2 border-xlight">
+        <section className="flex flex-col pt-10 border-b-2 border-xlight">
           <button
             onClick={() => {
               if (state.userValid) {
