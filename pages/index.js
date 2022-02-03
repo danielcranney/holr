@@ -25,8 +25,6 @@ import { PreviewBannerAlternative } from "../components/previews/PreviewBannerAl
 import { SidebarFooter } from "../components/SidebarFooter";
 import { BodyFooter } from "../components/BodyFooter";
 
-// import MainLayout from "../components/MainLayout";
-
 export default function Home() {
   const { state, dispatch } = useContext(StateContext);
   const searchRef = useRef(null);
@@ -84,8 +82,6 @@ export default function Home() {
     };
 
     handleScroll();
-
-    console.log(visibleSection);
 
     contentWrapperRef.current.addEventListener("scroll", handleScroll, true);
     // return () => {

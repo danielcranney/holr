@@ -26,11 +26,11 @@ const BasicDefault = (props) => {
 
   return (
     <div
-      className={`w-full sm:w-96 relative p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
+      className={`w-full sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
         `}
     >
       <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-lg">
-        <div className="w-24">
+        <div className="w-24 mb-2">
           <Image
             src={profileImageURL}
             width={51}
@@ -39,7 +39,9 @@ const BasicDefault = (props) => {
             className="object-scale-down rounded-full"
           />
         </div>
-        <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
+        <p className="mb-1 text-2xl font-bold text-center text-dark">
+          {twitterName}
+        </p>
         <p className={`text-base font-semibold tracking-wider ${textColor}`}>
           @{twitterScreenName}
         </p>
@@ -213,17 +215,17 @@ export default function Generate(props) {
     const data = canvas.toDataURL("image/" + type);
     const link = document.createElement("a");
 
-    if (typeof link.download === "string") {
-      link.href = data;
-      link.download = "shoutout." + type;
+    // if (typeof link.download === "string") {
+    link.href = data;
+    link.download = "shoutout." + type;
 
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      console.log("There is something wrong in the function ");
-      window.open(data);
-    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    // } else {
+    //   console.log("There is something wrong in the function ");
+    //   window.open(data);
+    // }
   };
 
   return (
