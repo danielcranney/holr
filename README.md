@@ -1,4 +1,12 @@
-This is a Next.js Twitter starter kit.
+# Yodlr
+
+Yodlr lets users create shoutout cards for Twitters users.
+
+## How it works
+- **Step 1** - Find a Twitter user
+- **Step 2** - Select card style
+- **Step 3** - Edit colors
+- **Step 4** - Download shoutout
 
 ## Packages
 
@@ -7,93 +15,40 @@ This is a Next.js Twitter starter kit.
 - [Twitter-lite](https://github.com/draftbit/twitter-lite)
 
 ## Getting Started
+#### Create environmental variables
 Create `.env.local` file in the project root and add the following content in it
 
 ```
 TWITTER_CONSUMER_KEY=
 TWITTER_CONSUMER_KEY_SECRET=
 TWITTER_BEARER_TOKEN=
-TEST_TWITTER_HANDLE=
 ```
 
 To get the Twitter keys, visit https://developer.twitter.com/en/portal/dashboard and create a standalone app. Fetch the consumer key, secret and bearer token and add it to the `.env.local` file.
 
-Add your twitter handle for `TEST_TWITTER_HANDLE`. This is used in the twitter sample page.
-
-#### App vs. User authentication
-
-Twitter has two different authentication options:
-
-- App: higher rate limits. Great for building your own Twitter App.
-- User: lower rate limits. Great for making requests on behalf of a User.
-
-**User** authentication requires:
-
-- `consumer_key`
-- `consumer_secret`
-- `access_token_key`
-- `access_token_secret`
-
-**App** authentication requires:
-
-- `bearer_token`
-
-For the example in this starter, we use App authentication which makes use of the `bearer_token`
-
 #### Install dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 #### Run the development server:
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-There is a sample API [http://localhost:3000/api/twitter-user](http://localhost:3000/api/twitter-user). This endpoint can be edited in `pages/api/twitter-user.js`.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Test the API from postman, by sending a `POST` request with the request body
+## License
+[GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
 
-```
-{
-    "twitterHandle": "SDinesh91"
-}
-```
+## Credits
+- Thank you to [Dinesh](https://twitter.com/SDinesh91) for the [NextJS Twitter starter kit](https://github.com/Dineshs91/nextjs-twitter-starter) that this project was originally built on.
+- Icons provided by [heroicons](https://heroicons.dev/).
 
-The response will be 
-
-```
-{
-    "screen_name": "SDinesh91",
-    "name": "Dinesh",
-    "profile_image_url": "https://pbs.twimg.com/profile_images/1421346630456922112/fVyiui9f_normal.jpg"
-}
-```
-
-Make sure the header `Content-Type` is set to `application/json`
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Example page
-
-Navigate to http://localhost:3000/twitter to see an example which displays a Twitter card with a Twitter user's information.
-
-Note: Twitter user is taken from the environment variable `TEST_TWITTER_HANDLE`
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Note
-
-If you would like to make requests on behalf of another user, you will need to generate a separate set of Access Tokens for that user using the 3-legged OAuth flow, and pass that user's tokens with your OAuth 1.0a User Context requests.
-
-Check out [next-auth.js](https://next-auth.js.org/getting-started/introduction) for OAuth.
