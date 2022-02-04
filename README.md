@@ -8,6 +8,9 @@ Yodlr lets users create shoutout cards for Twitters users.
 - **Step 3** - Edit colors
 - **Step 4** - Download shoutout
 
+## Screenshot
+![yodlr](https://user-images.githubusercontent.com/79528133/152577897-e4473daf-373b-48ba-b7b4-7f762ff25c47.png)
+
 ## Packages
 
 - [Next.js](https://nextjs.org/docs)
