@@ -12,6 +12,7 @@ const initialState = {
   selectedStyle: "basic-default",
   cardBgColor: "bg-blue-500",
   cardTextColor: "text-blue-500",
+  cardRingColor: "ring-blue-500",
 };
 // Color Reducer
 function reducer(state, action) {
@@ -50,6 +51,11 @@ function reducer(state, action) {
       return {
         ...state,
         cardTextColor: action.payload,
+      };
+    case "set-ring-color":
+      return {
+        ...state,
+        cardRingColor: action.payload,
       };
     default:
       throw new Error();

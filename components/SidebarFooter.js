@@ -3,7 +3,7 @@ import React from "react";
 export const SidebarFooter = () => {
   return (
     <article className="flex-col items-start hidden w-full mt-auto lg:flex">
-      <p className="mb-1 text-sm">&copy;2022 Hollr.</p>
+      <p className="mb-1 text-sm">&copy;2022 yodlr.</p>
       <p className="mb-1 text-sm">
         Built by{" "}
         <a
@@ -32,7 +32,7 @@ export const SidebarFooter = () => {
 
         <a
           className="flex items-center text-sm font-normal group"
-          href="https://github.com/danielcranney/holr"
+          href="https://github.com/danielcranney/yodlr"
           target="_blank"
         >
           <div className="w-5 h-5 mr-2">

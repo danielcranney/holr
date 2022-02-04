@@ -46,8 +46,8 @@ module.exports = {
         xxxlight: "#f7f9fa",
       },
       fontFamily: {
-        display: ['"neue-haas-unica"', "sans-serif"],
-        body: ['"neue-haas-unica"', "sans-serif"],
+        display: ['"poppins"', "sans-serif"],
+        body: ['"poppins"', "sans-serif"],
       },
       container: {
         padding: {

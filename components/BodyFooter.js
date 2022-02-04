@@ -3,7 +3,7 @@ import React from "react";
 export const BodyFooter = () => {
   return (
     <article className="flex flex-col w-full mt-8 lg:hidden">
-      <p className="mb-1 text-sm text-center sm:text-left">&copy;2022 Hollr.</p>
+      <p className="mb-1 text-sm text-center sm:text-left">&copy;2022 yodlr.</p>
 
       <div className="flex flex-col items-center justify-between sm:flex-row gap-y-1 sm:gap-y-0">
         <p className="mb-0 text-sm">
@@ -28,7 +28,7 @@ export const BodyFooter = () => {
         </a>
         <a
           className="flex items-center text-sm font-normal group"
-          href="https://github.com/danielcranney/holr"
+          href="https://github.com/danielcranney/yodlr"
           target="_blank"
         >
           <div className="w-5 h-5 mr-2">

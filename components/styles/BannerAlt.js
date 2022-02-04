@@ -21,7 +21,7 @@ export const BannerAlt = () => {
       {state.selectedStyle === "banner-alt" ? <SelectedTag /> : null}
       <div className="relative flex items-center w-full p-6 overflow-hidden bg-white rounded-lg shadow-lg md:p-8 shadow-light/30">
         <div className="absolute top-0 left-0 h-full overflow-hidden bg-blue-500 w-14 sm:w-20">
-          <div className="bg-[url('/profile.jpg')] h-full bg-center opacity-20"></div>
+          <div className="bg-[url('/mountain.jpg')] h-full bg-center opacity-20"></div>
         </div>
         <div className="flex items-center h-full mr-4 w-72">
           <Image

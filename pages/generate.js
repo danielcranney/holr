@@ -235,7 +235,7 @@ export default function Generate(props) {
   return (
     <div className="flex flex-col w-full max-h-screen">
       <Head>
-        <title>hollr | Share Your Shoutout</title>
+        <title>yodlr | Share Your Shoutout</title>
         <meta name="description" content="Twitter shoutout machine" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -244,17 +244,22 @@ export default function Generate(props) {
           <div className="flex items-center mb-8">
             <div className="flex items-center justify-center w-12 h-12 mr-0 lg:mr-2 rounded-2xl bg-brand">
               <svg
-                className="w-8 h-8 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
+                className={`w-6 h-6 text-white`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
-                <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+                ></path>
               </svg>
             </div>
             <h1 className="hidden mb-0 text-3xl font-semibold lg:block">
-              holr
+              yodlr
             </h1>
           </div>
           <div className="flex flex-col">
@@ -463,7 +468,8 @@ export default function Generate(props) {
           <GoBackStep newCount={1} />
           <h1 className="mb-2 text-4xl">Download Shoutout</h1>
           <p className="mb-6 text-lg">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            We've generated your image below. Download it, and share it! It's
+            that simple!
           </p>
 
           {!props.twitterInfo ? (
@@ -489,6 +495,10 @@ export default function Generate(props) {
                 >
                   Download PNG
                 </button>
+              </div>
+
+              <div className="self-start h-auto p-2 text-xs font-semibold text-center rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
+                Note: yodlr has known issues with Chrome on iOS.
               </div>
 
               <div ref={basicDefaultRef} className="w-full sm:w-96">

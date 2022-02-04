@@ -23,7 +23,7 @@ export const BannerDefault = () => {
       {state.selectedStyle === "banner-default" ? <SelectedTag /> : null}
       <div className="relative flex flex-col items-center justify-center p-6 overflow-hidden bg-white rounded-lg shadow-lg md:p-8 shadow-light/30">
         <div className="absolute top-0 w-full overflow-hidden bg-blue-500 h-28">
-          <div className="bg-[url('/profile.jpg')] h-full bg-center opacity-20"></div>
+          <div className="bg-[url('/mountain.jpg')] h-full bg-center opacity-20"></div>
         </div>
         <div className="flex items-center justify-center h-full mb-2 w-36">
           <Image

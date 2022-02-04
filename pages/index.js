@@ -1,13 +1,6 @@
-import React, {
-  useState,
-  useContext,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { GoToNextStep } from "../components/GoToNextStep";
 
@@ -104,7 +97,7 @@ export default function Home() {
     };
   }, []);
 
-  function handleColorSelection(bg, text) {
+  function handleColorSelection(bg, text, ring) {
     dispatch({
       type: "set-bg-color",
       payload: bg,
@@ -112,6 +105,10 @@ export default function Home() {
     dispatch({
       type: "set-text-color",
       payload: text,
+    });
+    dispatch({
+      type: "set-ring-color",
+      payload: ring,
     });
   }
 
@@ -154,7 +151,7 @@ export default function Home() {
   return (
     <main className="flex flex-1 h-screen overflow-hidden" id="Wrapper">
       <Head>
-        <title>hollr | Create a Twitter Shoutout</title>
+        <title>yodlr | Create a Twitter Shoutout</title>
         <meta name="description" content="Twitter shoutout machine" />
         <meta
           name="viewport"
@@ -169,16 +166,21 @@ export default function Home() {
         <div className="flex items-center mb-8">
           <div className="flex items-center justify-center w-12 h-12 mr-0 lg:mr-2 rounded-2xl bg-brand">
             <svg
-              className="w-8 h-8 text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
+              className={`w-6 h-6 text-white`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
-              <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"
+              ></path>
             </svg>
           </div>
-          <h1 className="hidden mb-0 text-3xl font-semibold lg:block">hollr</h1>
+          <h1 className="hidden mb-0 text-3xl font-semibold lg:block">yodlr</h1>
         </div>
         <div className="flex flex-col">
           <button
@@ -518,95 +520,122 @@ export default function Home() {
               {/* Color Buttons */}
               <article className="flex flex-wrap w-auto gap-y-2 gap-x-2">
                 <ColorSquare
+                  bgColor={`bg-dark`}
+                  textColor={`text-dark`}
+                  ringColor={`ring-dark`}
+                  handleColorSelection={handleColorSelection}
+                />
+
+                <ColorSquare
+                  bgColor={`bg-slate-700`}
+                  textColor={`text-slate-700`}
+                  ringColor={`ring-slate-700`}
+                  handleColorSelection={handleColorSelection}
+                />
+
+                <ColorSquare
                   bgColor={`bg-slate-500`}
                   textColor={`text-slate-500`}
+                  ringColor={`ring-slate-500`}
                   handleColorSelection={handleColorSelection}
                 />
-                <ColorSquare
-                  bgColor={`bg-gray-500`}
-                  textColor={`text-gray-500`}
-                  handleColorSelection={handleColorSelection}
-                />
+
                 <ColorSquare
                   bgColor={`bg-red-500`}
                   textColor={`text-red-500`}
+                  ringColor={`ring-red-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-orange-500`}
                   textColor={`text-orange-500`}
+                  ringColor={`ring-orange-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-amber-500`}
                   textColor={`text-amber-500`}
+                  ringColor={`ring-amber-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-yellow-500`}
                   textColor={`text-yellow-500`}
+                  ringColor={`ring-yellow-500`}
                   handleColorSelection={handleColorSelection}
                 />
 
                 <ColorSquare
                   bgColor={`bg-lime-500`}
                   textColor={`text-lime-500`}
+                  ringColor={`ring-lime-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-green-500`}
                   textColor={`text-green-500`}
+                  ringColor={`ring-green-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-emerald-500`}
                   textColor={`text-emerald-500`}
+                  ringColor={`ring-emerald-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-teal-500`}
                   textColor={`text-teal-500`}
+                  ringColor={`ring-teal-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-cyan-500`}
                   textColor={`text-cyan-500`}
+                  ringColor={`ring-cyan-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-blue-500`}
                   textColor={`text-blue-500`}
+                  ringColor={`ring-blue-500`}
                   handleColorSelection={handleColorSelection}
                 />
 
                 <ColorSquare
                   bgColor={`bg-indigo-500`}
                   textColor={`text-indigo-500`}
+                  ringColor={`ring-indigo-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-violet-500`}
                   textColor={`text-violet-500`}
+                  ringColor={`ring-violet-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-purple-500`}
                   textColor={`text-purple-500`}
+                  ringColor={`ring-purple-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-fuchsia-500`}
                   textColor={`text-fuchsia-500`}
+                  ringColor={`ring-fuchsia-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-pink-500`}
                   textColor={`text-pink-500`}
+                  ringColor={`ring-pink-500`}
                   handleColorSelection={handleColorSelection}
                 />
                 <ColorSquare
                   bgColor={`bg-rose-500`}
                   textColor={`text-rose-500`}
+                  ringColor={`ring-rose-500`}
                   handleColorSelection={handleColorSelection}
                 />
               </article>
@@ -665,7 +694,3 @@ export default function Home() {
     </main>
   );
 }
-
-// Home.getLayout = function getLayout(page) {
-//   return <MainLayout>{page}</MainLayout>;
-// };
