@@ -14,6 +14,7 @@ export const SidebarFooter = () => {
           Daniel Cranney
         </a>
       </p>
+      <p className="mb-1 text-sm">GNU General Public License v3.0</p>
       <div className="flex items-center ml-0">
         <a
           className="flex items-center text-sm font-normal group"

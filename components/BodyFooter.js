@@ -3,7 +3,12 @@ import React from "react";
 export const BodyFooter = () => {
   return (
     <article className="flex flex-col w-full mt-8 lg:hidden">
-      <p className="mb-1 text-sm text-center sm:text-left">&copy;2022 yodlr.</p>
+      <div className="flex mb-1">
+        <p className="flex-grow mb-0 text-sm text-center sm:text-left">
+          &copy;2022 yodlr.
+        </p>
+        <p className="mb-0 text-sm">GNU General Public License v3.0</p>
+      </div>
 
       <div className="flex flex-col items-center justify-between sm:flex-row gap-y-1 sm:gap-y-0">
         <p className="mb-0 text-sm">

@@ -1,12 +1,11 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { GoToNextStep } from "../components/GoToNextStep";
-
+// State import
 import { StateContext } from "../pages/_app";
+// Component imports
 import { ColorSquare } from "../components/ColorSquare";
-
+import { GoToNextStep } from "../components/GoToNextStep";
 import { BasicDefault } from "../components/styles/BasicDefault";
 import { BasicAlternative } from "../components/styles/BasicAlt";
 import { BannerDefault } from "../components/styles/BannerDefault";
@@ -17,13 +16,116 @@ import { PreviewBannerDefault } from "../components/previews/PreviewBannerDefaul
 import { PreviewBannerAlternative } from "../components/previews/PreviewBannerAlt";
 import { SidebarFooter } from "../components/SidebarFooter";
 import { BodyFooter } from "../components/BodyFooter";
+// Color Store
+export const colorStore = [
+  {
+    bg: "bg-black",
+    text: "text-black",
+    ring: "ring-black",
+  },
+  {
+    bg: "bg-dark",
+    text: "text-dark",
+    ring: "ring-dark",
+  },
+  {
+    bg: "bg-slate-500",
+    text: "text-slate-500",
+    ring: "ring-slate-500",
+  },
+  {
+    bg: "bg-red-500",
+    text: "text-red-500",
+    ring: "ring-red-500",
+  },
+  {
+    bg: "bg-orange-500",
+    text: "text-orange-500",
+    ring: "ring-orange-500",
+  },
+  {
+    bg: "bg-amber-500",
+    text: "text-amber-500",
+    ring: "ring-amber-500",
+  },
+  {
+    bg: "bg-yellow-500",
+    text: "text-yellow-500",
+    ring: "ring-yellow-500",
+  },
+  {
+    bg: "bg-lime-500",
+    text: "text-lime-500",
+    ring: "ring-lime-500",
+  },
+  {
+    bg: "bg-green-500",
+    text: "text-green-500",
+    ring: "ring-green-500",
+  },
+  {
+    bg: "bg-emerald-500",
+    text: "text-emerald-500",
+    ring: "ring-emerald-500",
+  },
+  {
+    bg: "bg-teal-500",
+    text: "text-teal-500",
+    ring: "ring-teal-500",
+  },
+  {
+    bg: "bg-cyan-500",
+    text: "text-cyan-500",
+    ring: "ring-cyan-500",
+  },
+  {
+    bg: "bg-blue-500",
+    text: "text-blue-500",
+    ring: "ring-blue-500",
+  },
+  {
+    bg: "bg-indigo-500",
+    text: "text-indigo-500",
+    ring: "ring-indigo-500",
+  },
+  {
+    bg: "bg-violet-500",
+    text: "text-violet-500",
+    ring: "ring-violet-500",
+  },
+  {
+    bg: "bg-purple-500",
+    text: "text-purple-500",
+    ring: "ring-purple-500",
+  },
+  {
+    bg: "bg-fuchsia-500",
+    text: "text-fuchsia-500",
+    ring: "ring-fuchsia-500",
+  },
+  {
+    bg: "bg-pink-500",
+    text: "text-pink-500",
+    ring: "ring-pink-500",
+  },
+  {
+    bg: "bg-rose-500",
+    text: "text-rose-500",
+    ring: "ring-rose-500",
+  },
+];
 
 export default function Home() {
   const { state, dispatch } = useContext(StateContext);
-  const searchRef = useRef(null);
   const router = useRouter();
   const [visibleSection, setVisibleSection] = useState("findUser");
   const [scrolling, setScrolling] = useState(false);
+
+  const searchRef = useRef(null);
+  const contentWrapperRef = useRef();
+  const findUserRef = useRef(null);
+  const selectStyleRef = useRef(null);
+  const editColorsRef = useRef(null);
 
   const getDimensions = (ele) => {
     const { height } = ele.getBoundingClientRect();
@@ -43,11 +145,6 @@ export default function Home() {
       block: "start",
     });
   };
-
-  const contentWrapperRef = useRef();
-  const findUserRef = useRef(null);
-  const selectStyleRef = useRef(null);
-  const editColorsRef = useRef(null);
 
   useEffect(() => {
     const sectionRefs = [
@@ -125,18 +222,14 @@ export default function Home() {
 
     if (!response.ok) {
       const resError = await response.json();
-      // throw new Error(`Error: ${response.status}`);
-      // console.log(response.message);
-      console.log(resError.message);
-      console.log(response.status);
+      // console.log(resError.message);
+      // console.log(response.status);
       dispatch({
         type: "set-user-validity",
         payload: false,
       });
     } else {
-      console.log(response.status);
       const validatedUser = await response.json();
-      console.log(validatedUser);
       dispatch({
         type: "set-user-validity",
         payload: validatedUser,
@@ -393,8 +486,7 @@ export default function Home() {
           </p>
           <h1 className="mb-2 text-4xl">Find User</h1>
           <p className="mb-6 text-lg">
-            Using the box below, search for a Twitter user to create a shoutout
-            for.
+            Search for the user you want to shoutout.
           </p>
           <form className="relative flex flex-col">
             <div className="flex">
@@ -410,7 +502,7 @@ export default function Home() {
                     searchRef.current.value.length < 2 ||
                     searchRef.current.value.length > 15
                   ) {
-                    console.log("Username is less than 2 or greater than 15");
+                    // Username is more than 2 and less than 15
                     dispatch({
                       type: "search-user",
                       payload: "",
@@ -488,7 +580,7 @@ export default function Home() {
           </p>
           <h1 className="mb-2 text-4xl">Select Style</h1>
           <p className="mb-6 text-lg">
-            Select one of the pre-made styles below
+            Choose the perfect style for your shoutout.
           </p>
           <article className="flex flex-col flex-wrap md:flex-row gap-x-4 gap-y-4">
             {/* Style 1 - Basic Default */}
@@ -513,131 +605,23 @@ export default function Home() {
           </p>
           <h1 className="mb-2 text-4xl">Edit Colors</h1>
           <p className="mb-6 text-lg">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Make some final tweaks by choosing the right color for your
+            shoutout.
           </p>
           <article className="flex flex-col w-full md:flex-row gap-x-0 sm:gap-x-4">
             <div className="flex-grow">
               {/* Color Buttons */}
               <article className="flex flex-wrap w-auto gap-y-2 gap-x-2">
-                <ColorSquare
-                  bgColor={`bg-dark`}
-                  textColor={`text-dark`}
-                  ringColor={`ring-dark`}
-                  handleColorSelection={handleColorSelection}
-                />
-
-                <ColorSquare
-                  bgColor={`bg-slate-700`}
-                  textColor={`text-slate-700`}
-                  ringColor={`ring-slate-700`}
-                  handleColorSelection={handleColorSelection}
-                />
-
-                <ColorSquare
-                  bgColor={`bg-slate-500`}
-                  textColor={`text-slate-500`}
-                  ringColor={`ring-slate-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-
-                <ColorSquare
-                  bgColor={`bg-red-500`}
-                  textColor={`text-red-500`}
-                  ringColor={`ring-red-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-orange-500`}
-                  textColor={`text-orange-500`}
-                  ringColor={`ring-orange-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-amber-500`}
-                  textColor={`text-amber-500`}
-                  ringColor={`ring-amber-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-yellow-500`}
-                  textColor={`text-yellow-500`}
-                  ringColor={`ring-yellow-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-
-                <ColorSquare
-                  bgColor={`bg-lime-500`}
-                  textColor={`text-lime-500`}
-                  ringColor={`ring-lime-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-green-500`}
-                  textColor={`text-green-500`}
-                  ringColor={`ring-green-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-emerald-500`}
-                  textColor={`text-emerald-500`}
-                  ringColor={`ring-emerald-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-teal-500`}
-                  textColor={`text-teal-500`}
-                  ringColor={`ring-teal-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-cyan-500`}
-                  textColor={`text-cyan-500`}
-                  ringColor={`ring-cyan-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-blue-500`}
-                  textColor={`text-blue-500`}
-                  ringColor={`ring-blue-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-
-                <ColorSquare
-                  bgColor={`bg-indigo-500`}
-                  textColor={`text-indigo-500`}
-                  ringColor={`ring-indigo-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-violet-500`}
-                  textColor={`text-violet-500`}
-                  ringColor={`ring-violet-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-purple-500`}
-                  textColor={`text-purple-500`}
-                  ringColor={`ring-purple-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-fuchsia-500`}
-                  textColor={`text-fuchsia-500`}
-                  ringColor={`ring-fuchsia-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-pink-500`}
-                  textColor={`text-pink-500`}
-                  ringColor={`ring-pink-500`}
-                  handleColorSelection={handleColorSelection}
-                />
-                <ColorSquare
-                  bgColor={`bg-rose-500`}
-                  textColor={`text-rose-500`}
-                  ringColor={`ring-rose-500`}
-                  handleColorSelection={handleColorSelection}
-                />
+                {colorStore.map((color) => {
+                  return (
+                    <ColorSquare
+                      bgColor={color.bg}
+                      textColor={color.text}
+                      ringColor={color.ring}
+                      handleColorSelection={handleColorSelection}
+                    />
+                  );
+                })}
               </article>
             </div>
             {/* Preview */}

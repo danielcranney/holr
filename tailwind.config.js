@@ -43,7 +43,6 @@ module.exports = {
         light: "#c6ccd0",
         xlight: "#e9f1f4",
         xxlight: "#f7f9fa",
-        xxxlight: "#f7f9fa",
       },
       fontFamily: {
         display: ['"poppins"', "sans-serif"],

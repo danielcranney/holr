@@ -13,7 +13,6 @@ import { StateContext } from "./_app";
 import { GoBackStep } from "../components/StartAgainButton";
 
 const BasicDefault = (props) => {
-  console.log(props);
   let twitterName = props.twitterInfo.name;
   let twitterScreenName = props.twitterInfo.screenName;
   let twitterDescription = props.twitterInfo.description;
@@ -55,7 +54,6 @@ const BasicDefault = (props) => {
 };
 
 function BasicAlternative(props) {
-  console.log(props);
   let twitterName = props.twitterInfo.name;
   let twitterScreenName = props.twitterInfo.screenName;
   let twitterDescription = props.twitterInfo.description;
@@ -95,7 +93,6 @@ function BasicAlternative(props) {
 }
 
 function BannerDefault(props) {
-  console.log(props);
   let twitterName = props.twitterInfo.name;
   let twitterScreenName = props.twitterInfo.screenName;
   let twitterDescription = props.twitterInfo.description;
@@ -145,7 +142,6 @@ function BannerDefault(props) {
 }
 
 function BannerAlternative(props) {
-  console.log(props);
   let twitterName = props.twitterInfo.name;
   let twitterScreenName = props.twitterInfo.screenName;
   let twitterDescription = props.twitterInfo.description;
@@ -202,7 +198,6 @@ export default function Generate(props) {
   const bannerAltRef = useRef();
 
   const router = useRouter();
-  console.log(props);
   const { state, dispatch } = useContext(StateContext);
 
   useEffect(() => {
@@ -219,17 +214,16 @@ export default function Generate(props) {
     const data = canvas.toDataURL("image/" + type);
     const link = document.createElement("a");
 
-    // if (typeof link.download === "string") {
-    link.href = data;
-    link.download = "shoutout." + type;
+    if (typeof link.download === "string") {
+      link.href = data;
+      link.download = "shoutout." + type;
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    // } else {
-    //   console.log("There is something wrong in the function ");
-    //   window.open(data);
-    // }
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      window.open(data);
+    }
   };
 
   return (
@@ -578,7 +572,7 @@ export default function Generate(props) {
                   className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
                   type="button"
                   onClick={() => {
-                    handleDownloadImage(bannerDefaultRef, "jpg");
+                    handleDownloadImage(bannerAltRef, "jpg");
                   }}
                 >
                   Download JPG
@@ -587,14 +581,14 @@ export default function Generate(props) {
                 <button
                   className="self-start px-2 py-2.5 md:px-3 md:py-3.5 font-bold text-white rounded-lg bg-brand text-sm md:text-base"
                   onClick={() => {
-                    handleDownloadImage(bannerDefaultRef, "png");
+                    handleDownloadImage(bannerAltRef, "png");
                   }}
                 >
                   Download PNG
                 </button>
               </div>
 
-              <div ref={bannerDefaultRef} className="w-full sm:w-96">
+              <div ref={bannerAltRef} className="w-full sm:w-96">
                 <BannerAlternative
                   twitterInfo={props.twitterInfo}
                   textColor={props.textColor}
@@ -610,11 +604,6 @@ export default function Generate(props) {
 }
 
 export async function getServerSideProps(context) {
-  // console.log(context.query.searchUser);
-  // console.log(context.query.cardStyle);
-  // console.log(context.query.textColor);
-  // console.log(context.query.bgColor);
-
   let cardStyle = context.query.cardStyle;
   let textColor = context.query.textColor;
   let bgColor = context.query.bgColor;
