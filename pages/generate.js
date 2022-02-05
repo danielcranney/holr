@@ -492,7 +492,8 @@ export default function Generate(props) {
               </div>
 
               <div className="self-start h-auto p-2 text-xs font-semibold text-center rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
-                Note: yodlr has known issues with Chrome on iOS.
+                Note: yodlr has known issues with Chrome on iOS. If issues
+                occur, we recommend using an alternative browser.
               </div>
 
               <div ref={basicDefaultRef} className="w-full sm:w-96">
