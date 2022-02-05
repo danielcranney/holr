@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useRef } from "react";
-import html2canvas from "html2canvas";
-
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
+import html2canvas from "html2canvas";
 import { fetchUser } from "../services/twitter";
 import { MadeWithTag } from "../components/MadeWithTag";
-import MainLayout from "../components/MainLayout";
-import { urlObjectKeys } from "next/dist/shared/lib/utils";
 import { useRouter } from "next/router";
 import { StateContext } from "./_app";
 import { GoBackStep } from "../components/StartAgainButton";
@@ -216,7 +213,7 @@ export default function Generate(props) {
 
     if (typeof link.download === "string") {
       link.href = data;
-      link.download = "shoutout." + type;
+      link.download = "Yodlr-Shoutout." + type;
 
       document.body.appendChild(link);
       link.click();
