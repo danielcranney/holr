@@ -116,11 +116,10 @@ export const colorStore = [
 ];
 
 export default function Home() {
-  const { state, dispatch } = useContext(StateContext);
   const router = useRouter();
+  const { state, dispatch } = useContext(StateContext);
   const [visibleSection, setVisibleSection] = useState("findUser");
   const [scrolling, setScrolling] = useState(false);
-
   const searchRef = useRef(null);
   const contentWrapperRef = useRef();
   const findUserRef = useRef(null);
@@ -221,11 +220,12 @@ export default function Home() {
     });
 
     if (!response.ok) {
-      const resError = await response.json();
-      // console.log(resError.message);
-      // console.log(response.status);
       dispatch({
         type: "set-user-validity",
+        payload: false,
+      });
+      dispatch({
+        type: "set-loading",
         payload: false,
       });
     } else {
@@ -236,6 +236,10 @@ export default function Home() {
       });
       dispatch({
         type: "check-for-errors",
+        payload: false,
+      });
+      dispatch({
+        type: "set-loading",
         payload: false,
       });
     }
@@ -502,7 +506,6 @@ export default function Home() {
                     searchRef.current.value.length < 2 ||
                     searchRef.current.value.length > 15
                   ) {
-                    // Username is more than 2 and less than 15
                     dispatch({
                       type: "search-user",
                       payload: "",
@@ -513,10 +516,16 @@ export default function Home() {
                     });
                   } else {
                     dispatch({
-                      type: "search-user",
-                      payload: searchRef.current.value,
+                      type: "set-loading",
+                      payload: true,
                     });
-                    ValidateUser(searchRef.current.value);
+                    setTimeout(() => {
+                      dispatch({
+                        type: "search-user",
+                        payload: searchRef.current.value,
+                      });
+                      ValidateUser(searchRef.current.value);
+                    }, 2000);
                   }
                 }}
               />
@@ -539,6 +548,24 @@ export default function Home() {
                   ></path>
                 </svg>
                 User not valid
+              </p>
+            ) : state.loading ? (
+              <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-orange-500 uppercase bg-orange-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
+                <svg
+                  className="w-4 h-4 mr-1.5 text-orange-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
+                  ></path>
+                </svg>
+                Loading...
               </p>
             ) : (
               <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-green-500 uppercase bg-green-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">

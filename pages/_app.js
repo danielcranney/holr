@@ -7,6 +7,7 @@ export const StateContext = createContext(null);
 const initialState = {
   searchUser: null,
   userValid: false,
+  loading: false,
   errorGenerating: false,
   count: 1,
   selectedStyle: "basic-default",
@@ -57,6 +58,11 @@ function reducer(state, action) {
         ...state,
         cardRingColor: action.payload,
       };
+    case "set-loading":
+      return {
+        ...state,
+        loading: action.payload,
+      };
     default:
       throw new Error();
   }
@@ -65,12 +71,9 @@ function reducer(state, action) {
 function MyApp({ Component, pageProps }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // const getLayout = Component.getLayout || ((page) => page);
   return (
     <StateContext.Provider value={{ state, dispatch }}>
-      {/* {getLayout( */}
       <Component {...pageProps} />
-      {/* )} */}
     </StateContext.Provider>
   );
 }
