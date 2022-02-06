@@ -209,6 +209,10 @@ export default function Home() {
   }
 
   const ValidateUser = async (inputValue) => {
+    dispatch({
+      type: "set-loading",
+      payload: false,
+    });
     const response = await fetch("/api/twitter-user", {
       method: "POST",
       headers: {
@@ -224,10 +228,6 @@ export default function Home() {
         type: "set-user-validity",
         payload: false,
       });
-      dispatch({
-        type: "set-loading",
-        payload: false,
-      });
     } else {
       const validatedUser = await response.json();
       dispatch({
@@ -236,10 +236,6 @@ export default function Home() {
       });
       dispatch({
         type: "check-for-errors",
-        payload: false,
-      });
-      dispatch({
-        type: "set-loading",
         payload: false,
       });
     }
