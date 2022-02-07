@@ -15,7 +15,7 @@ export default async (req, res) => {
     let data = req.body;
 
     if (!data) {
-      console.log("Error found");
+      // console.log("Error found");
       res.status(400).json({ message: "invalid request body" });
     }
 
@@ -31,11 +31,11 @@ export default async (req, res) => {
           name: userResponse.name,
           profile_image_url: userResponse.profile_image_url_https,
         };
-        console.log("User found");
+        // console.log("User found");
 
         res.status(200).json(twitterInfo);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(404).json({ message: error.errors[0].message });
       }
     }
