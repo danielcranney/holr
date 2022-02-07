@@ -116,16 +116,18 @@ export const colorStore = [
 ];
 
 export default function Home() {
-  const router = useRouter();
   const { state, dispatch } = useContext(StateContext);
+  const router = useRouter();
   const [visibleSection, setVisibleSection] = useState("findUser");
   const [scrolling, setScrolling] = useState(false);
+  // useRef Initialisations
   const searchRef = useRef(null);
   const contentWrapperRef = useRef();
   const findUserRef = useRef(null);
   const selectStyleRef = useRef(null);
   const editColorsRef = useRef(null);
 
+  // Scroll functions
   const getDimensions = (ele) => {
     const { height } = ele.getBoundingClientRect();
     const offsetTop = ele.offsetTop;
@@ -210,8 +212,8 @@ export default function Home() {
 
   const ValidateUser = async (inputValue) => {
     dispatch({
-      type: "set-loading",
-      payload: false,
+      type: "search-user",
+      payload: searchRef.current.value,
     });
     const response = await fetch("/api/twitter-user", {
       method: "POST",
@@ -239,6 +241,10 @@ export default function Home() {
         payload: false,
       });
     }
+    dispatch({
+      type: "set-loading",
+      payload: false,
+    });
   };
 
   return (
@@ -498,6 +504,10 @@ export default function Home() {
                 placeholder="username"
                 ref={searchRef}
                 onChange={() => {
+                  dispatch({
+                    type: "set-loading",
+                    payload: true,
+                  });
                   if (
                     searchRef.current.value.length < 2 ||
                     searchRef.current.value.length > 15
@@ -510,24 +520,32 @@ export default function Home() {
                       type: "set-user-validity",
                       payload: false,
                     });
-                  } else {
                     dispatch({
                       type: "set-loading",
-                      payload: true,
+                      payload: false,
                     });
+                  } else {
                     setTimeout(() => {
-                      dispatch({
-                        type: "search-user",
-                        payload: searchRef.current.value,
-                      });
                       ValidateUser(searchRef.current.value);
-                    }, 2000);
+                    }, 1000);
                   }
                 }}
               />
             </div>
 
-            {!state.userValid ? (
+            {state.loading ? (
+              <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-orange-500 uppercase bg-orange-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
+                <svg
+                  className="w-4 h-4 mr-1.5 text-orange-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                </svg>
+                Loading...
+              </p>
+            ) : !state.userValid ? (
               <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-red-500 uppercase bg-red-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
                 <svg
                   className="w-4 h-4 mr-1.5 text-red-500"
@@ -544,24 +562,6 @@ export default function Home() {
                   ></path>
                 </svg>
                 User not valid
-              </p>
-            ) : state.loading ? (
-              <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-orange-500 uppercase bg-orange-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">
-                <svg
-                  className="w-4 h-4 mr-1.5 text-orange-500"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
-                  ></path>
-                </svg>
-                Loading...
               </p>
             ) : (
               <p className="relative top-auto right-auto flex items-center w-auto h-8 p-2 mt-2 mb-0 text-xs font-semibold tracking-wider text-green-500 uppercase bg-green-500 rounded-md -translate-y-0 sm:mt-0 sm:-translate-y-1/2 sm:absolute sm:right-2 sm:top-1/2 bg-opacity-10">

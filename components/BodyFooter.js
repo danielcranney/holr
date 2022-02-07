@@ -3,11 +3,9 @@ import React from "react";
 export const BodyFooter = () => {
   return (
     <article className="flex flex-col w-full mt-8 lg:hidden">
-      <div className="flex mb-1">
-        <p className="flex-grow mb-0 text-sm text-center sm:text-left">
-          &copy;2022 yodlr.
-        </p>
-        <p className="mb-0 text-sm">GNU General Public License v3.0</p>
+      <div className="flex mb-1 flex-col items-center">
+        <p className="mb-0 text-sm text-center">&copy;2022 yodlr.</p>
+        {/* <p className="mb-0 text-sm">GNU General Public License v3.0</p> */}
       </div>
 
       <div className="flex flex-col items-center justify-between sm:flex-row gap-y-1 sm:gap-y-0">
@@ -31,7 +29,7 @@ export const BodyFooter = () => {
           </div>
           Follow me on Twitter
         </a>
-        <a
+        {/* <a
           className="flex items-center text-sm font-normal group"
           href="https://github.com/danielcranney/yodlr"
           target="_blank"
@@ -50,7 +48,7 @@ export const BodyFooter = () => {
             </svg>
           </div>
           View GitHub
-        </a>
+        </a> */}
       </div>
     </article>
   );
