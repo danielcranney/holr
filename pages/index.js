@@ -638,6 +638,7 @@ export default function Home() {
                 {colorStore.map((color) => {
                   return (
                     <ColorSquare
+                      key={color.bg}
                       bgColor={color.bg}
                       textColor={color.text}
                       ringColor={color.ring}

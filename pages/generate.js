@@ -65,7 +65,7 @@ function BasicAlternative(props) {
       className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
       <div className="flex items-center p-6 bg-white rounded-lg gap-x-4 md:p-8">
-        <div className="w-24">
+        <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
             width={51}
@@ -74,12 +74,16 @@ function BasicAlternative(props) {
             className="object-scale-down rounded-full"
           />
         </div>
-        <div className="flex-grow">
-          <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
-          <p className={`text-base font-semibold tracking-wider ${textColor}`}>
+        <div className="flex-1">
+          <p className="break-all mb-1 text-2xl font-bold text-dark">
+            {twitterName}
+          </p>
+          <p
+            className={`break-all text-base font-semibold tracking-wider ${textColor}`}
+          >
             @{twitterScreenName}
           </p>
-          <p className="mb-0 text-sm tracking-wide text-mid">
+          <p className="break-all mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
@@ -165,20 +169,25 @@ function BannerAlternative(props) {
             }}
           ></div>
         </div>
-        <div className="flex items-center h-full col-span-1">
+        <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
-            width={102}
-            height={102}
-            className="object-scale-down overflow-hidden rounded-full"
+            width={51}
+            height={51}
+            layout="responsive"
+            className="object-scale-down rounded-full"
           />
         </div>
-        <div className="col-span-2">
-          <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
-          <p className={`text-base font-semibold tracking-wider ${textColor}`}>
+        <div className="flex-1">
+          <p className="break-all mb-1 text-2xl font-bold text-dark">
+            {twitterName}
+          </p>
+          <p
+            className={`text-base font-semibold tracking-wider break-all ${textColor}`}
+          >
             @{twitterScreenName}
           </p>
-          <p className="mb-0 text-sm tracking-wide text-mid">
+          <p className="break-all mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
@@ -463,6 +472,11 @@ export default function Generate(props) {
             that simple!
           </p>
 
+          <div className="mb-6 self-start h-auto p-2 text-xs font-semibold text-center rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
+            Note: yodlr has known issues with Chrome on iOS. If issues occur, we
+            recommend using an alternative browser.
+          </div>
+
           {!props.twitterInfo ? (
             <p>Couldn't fetch information from Twitter</p>
           ) : props.cardStyle === "basic-default" ? (
@@ -486,11 +500,6 @@ export default function Generate(props) {
                 >
                   Download PNG
                 </button>
-              </div>
-
-              <div className="self-start h-auto p-2 text-xs font-semibold text-center rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
-                Note: yodlr has known issues with Chrome on iOS. If issues
-                occur, we recommend using an alternative browser.
               </div>
 
               <div ref={basicDefaultRef} className="w-full sm:w-96">
