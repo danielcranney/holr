@@ -11,14 +11,14 @@ export const PreviewBannerAlternative = () => {
         <div
           className={`absolute top-0 left-0 w-20 h-full overflow-hidden ${state.cardBgColor}`}
         ></div>
-        <div className="z-20 flex w-24 mr-4">
-          <div className="w-24 h-24 bg-gray-300 rounded-full"></div>
+        <div className="z-20 flex w-20 sm:w-24 mr-4">
+          <div className="w-20 sm:w-24 h-20 sm:h-24 bg-gray-300 rounded-full"></div>
         </div>
 
         <div className="flex-grow">
-          <div className="h-6 mb-2 rounded-md w-36 bg-dark"></div>
+          <div className="h-6 mb-2 rounded-md w-24 sm:w-36 bg-dark"></div>
           <div
-            className={`h-4 mb-4 rounded-md w-32 ${state.cardBgColor}`}
+            className={`h-4 mb-4 rounded-md w-20 sm:w-32 ${state.cardBgColor}`}
           ></div>
           <div className="flex flex-wrap items-start justify-start gap-x-2">
             <div className={`h-3 rounded-md w-16 bg-light mb-2`}>&nbsp;</div>

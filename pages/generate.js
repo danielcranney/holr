@@ -85,7 +85,7 @@ function BasicAlternative(props) {
           >
             @{twitterScreenName}
           </p>
-          <p className="break-words mb-0 text-sm tracking-wide text-mid">
+          <p className="break-all mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
@@ -193,7 +193,7 @@ function BannerAlternative(props) {
           >
             @{twitterScreenName}
           </p>
-          <p className="break-words mb-0 text-sm tracking-wide text-mid">
+          <p className="break-all mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
