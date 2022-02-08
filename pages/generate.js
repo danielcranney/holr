@@ -35,13 +35,15 @@ const BasicDefault = (props) => {
             className="object-scale-down rounded-full"
           />
         </div>
-        <p className="mb-1 text-2xl font-bold text-center text-dark">
+        <p className="break-words mb-1 text-2xl font-bold text-center text-dark">
           {twitterName}
         </p>
-        <p className={`text-base font-semibold tracking-wider ${textColor}`}>
+        <p
+          className={`break-words text-base font-semibold tracking-wider ${textColor}`}
+        >
           @{twitterScreenName}
         </p>
-        <p className="mb-0 text-sm tracking-wide text-center text-mid">
+        <p className="break-words mb-0 text-sm tracking-wide text-center text-mid">
           {twitterDescription}
         </p>
       </div>
@@ -75,15 +77,15 @@ function BasicAlternative(props) {
           />
         </div>
         <div className="flex-1">
-          <p className="break-all mb-1 text-2xl font-bold text-dark">
+          <p className="break-words mb-1 text-lg sm:text-2xl font-bold text-dark">
             {twitterName}
           </p>
           <p
-            className={`break-all text-base font-semibold tracking-wider ${textColor}`}
+            className={`break-words text-sm sm:text-base font-semibold tracking-wider ${textColor}`}
           >
             @{twitterScreenName}
           </p>
-          <p className="break-all mb-0 text-sm tracking-wide text-mid">
+          <p className="break-words mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
@@ -129,11 +131,15 @@ function BannerDefault(props) {
             className="object-scale-down rounded-full"
           />
         </div>
-        <p className="mb-1 text-2xl font-bold text-dark">{twitterName}</p>
-        <p className={`text-base font-semibold tracking-wider ${textColor}`}>
+        <p className="break-words mb-1 text-lg sm:text-2xl font-bold text-dark">
+          {twitterName}
+        </p>
+        <p
+          className={`break-words text-base font-semibold tracking-wider ${textColor}`}
+        >
           @{twitterScreenName}
         </p>
-        <p className="mb-0 text-sm tracking-wide text-center text-mid">
+        <p className="break-words mb-0 text-sm tracking-wide text-center text-mid">
           {twitterDescription}
         </p>
       </div>
@@ -179,15 +185,15 @@ function BannerAlternative(props) {
           />
         </div>
         <div className="flex-1">
-          <p className="break-all mb-1 text-2xl font-bold text-dark">
+          <p className="break-words mb-1 text-lg sm:text-2xl font-bold text-dark">
             {twitterName}
           </p>
           <p
-            className={`text-base font-semibold tracking-wider break-all ${textColor}`}
+            className={`text-sm sm:text-base font-semibold tracking-wider break-words ${textColor}`}
           >
             @{twitterScreenName}
           </p>
-          <p className="break-all mb-0 text-sm tracking-wide text-mid">
+          <p className="break-words mb-0 text-sm tracking-wide text-mid">
             {twitterDescription}
           </p>
         </div>
@@ -472,7 +478,7 @@ export default function Generate(props) {
             that simple!
           </p>
 
-          <div className="mb-6 self-start h-auto p-2 text-xs font-semibold text-center rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
+          <div className="mb-6 self-start h-auto p-2 text-xs font-semibold text-left rounded-md text-opacity-85 bg-brand text-dark bg-opacity-10">
             Note: yodlr has known issues with Chrome on iOS. If issues occur, we
             recommend using an alternative browser.
           </div>
