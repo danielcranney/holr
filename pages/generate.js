@@ -29,9 +29,8 @@ const BasicDefault = (props) => {
         <div className="w-24 h-24 mb-2">
           <Image
             src={profileImageURL}
-            width={25}
-            height={25}
-            layout="responsive"
+            width={51}
+            height={51}
             className="object-cover rounded-full"
           />
         </div>
@@ -70,9 +69,8 @@ function BasicAlternative(props) {
         <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
-            width={25}
-            height={25}
-            layout="responsive"
+            width={51}
+            height={51}
             className="object-cover rounded-full"
           />
         </div>
@@ -125,9 +123,8 @@ function BannerDefault(props) {
         <div className="w-24 h-24">
           <Image
             src={profileImageURL}
-            width={25}
-            height={25}
-            layout="responsive"
+            width={51}
+            height={51}
             className="object-cover rounded-full"
           />
         </div>
@@ -179,9 +176,8 @@ function BannerAlternative(props) {
         <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
-            width={25}
-            height={25}
-            layout="responsive"
+            width={51}
+            height={51}
             className="object-cover rounded-full"
           />
         </div>
