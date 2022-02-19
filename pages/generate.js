@@ -32,7 +32,7 @@ const BasicDefault = (props) => {
             width={25}
             height={25}
             layout="responsive"
-            className="object-scale-down rounded-full"
+            className="object-cover rounded-full"
           />
         </div>
         <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
@@ -73,7 +73,7 @@ function BasicAlternative(props) {
             width={25}
             height={25}
             layout="responsive"
-            className="object-scale-down rounded-full"
+            className="object-cover rounded-full"
           />
         </div>
         <div className="flex-1">
@@ -128,7 +128,7 @@ function BannerDefault(props) {
             width={25}
             height={25}
             layout="responsive"
-            className="object-scale-down rounded-full"
+            className="object-cover rounded-full"
           />
         </div>
         <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
@@ -172,6 +172,7 @@ function BannerAlternative(props) {
             className={`h-full bg-center opacity-20`}
             style={{
               backgroundImage: `url(${profileBannerURL}/mobile_retina)`,
+              opacity: 0.2,
             }}
           ></div>
         </div>
@@ -181,7 +182,7 @@ function BannerAlternative(props) {
             width={25}
             height={25}
             layout="responsive"
-            className="object-scale-down rounded-full"
+            className="object-cover rounded-full"
           />
         </div>
         <div className="flex-1">
@@ -221,7 +222,12 @@ export default function Generate(props) {
 
   const handleDownloadImage = async (elementRef, type) => {
     const element = elementRef.current;
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, {
+      logging: true,
+      letterRendering: 1,
+      allowTaint: false,
+      useCORS: true,
+    });
 
     const data = canvas.toDataURL("image/" + type);
     const link = document.createElement("a");
@@ -644,7 +650,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-// Share.getLayout = function getLayout(page) {
-//   return <MainLayout>{page}</MainLayout>;
-// };
