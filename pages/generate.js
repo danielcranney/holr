@@ -25,17 +25,17 @@ const BasicDefault = (props) => {
       className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight
         `}
     >
-      <div className="relative flex flex-col items-center justify-center p-6 bg-white rounded-lg md:p-8">
-        <div className="w-24 mb-2">
+      <div className="relative flex flex-col items-center justify-center p-4 ipx:p-5 overflow-hidden bg-white rounded-lg md:p-7">
+        <div className="w-24 h-24 mb-2">
           <Image
             src={profileImageURL}
-            width={51}
-            height={51}
+            width={25}
+            height={25}
             layout="responsive"
             className="object-scale-down rounded-full"
           />
         </div>
-        <p className="break-words mb-1 text-2xl font-bold text-center text-dark">
+        <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
           {twitterName}
         </p>
         <p
@@ -70,8 +70,8 @@ function BasicAlternative(props) {
         <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
-            width={51}
-            height={51}
+            width={25}
+            height={25}
             layout="responsive"
             className="object-scale-down rounded-full"
           />
@@ -111,7 +111,7 @@ function BannerDefault(props) {
     <div
       className={`w-full ipx:w-66 ip12:w-70 sm:w-96 relative p-4 md:p-8 rounded-lg bg-xlight hover:cursor-pointer group transition-all duration-150 ease-in-out border-xlight`}
     >
-      <div className="relative flex flex-col items-center justify-center p-6 overflow-hidden bg-white rounded-lg md:p-8">
+      <div className="relative flex flex-col items-center justify-center p-4 ipx:p-5 overflow-hidden bg-white rounded-lg md:p-7">
         <div
           className={`absolute top-0 w-full overflow-hidden ${bgColor} h-24`}
         >
@@ -122,16 +122,16 @@ function BannerDefault(props) {
             }}
           ></div>
         </div>
-        <div className="w-24">
+        <div className="w-24 h-24">
           <Image
             src={profileImageURL}
-            width={51}
-            height={51}
+            width={25}
+            height={25}
             layout="responsive"
             className="object-scale-down rounded-full"
           />
         </div>
-        <p className="break-words mb-1 text-lg sm:text-2xl font-bold text-dark">
+        <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
           {twitterName}
         </p>
         <p
@@ -178,8 +178,8 @@ function BannerAlternative(props) {
         <div className="w-12 sm:w-24 block">
           <Image
             src={profileImageURL}
-            width={51}
-            height={51}
+            width={25}
+            height={25}
             layout="responsive"
             className="object-scale-down rounded-full"
           />
