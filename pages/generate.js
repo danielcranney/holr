@@ -31,7 +31,8 @@ const BasicDefault = (props) => {
             src={profileImageURL}
             width={51}
             height={51}
-            className="object-cover rounded-full"
+            layout="responsive"
+            className="rounded-full"
           />
         </div>
         <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
@@ -71,7 +72,8 @@ function BasicAlternative(props) {
             src={profileImageURL}
             width={51}
             height={51}
-            className="object-cover rounded-full"
+            layout="responsive"
+            className="rounded-full"
           />
         </div>
         <div className="flex-1">
@@ -125,7 +127,8 @@ function BannerDefault(props) {
             src={profileImageURL}
             width={51}
             height={51}
-            className="object-cover rounded-full"
+            layout="responsive"
+            className="rounded-full"
           />
         </div>
         <p className="mt-2 break-words mb-1 text-base ipx:text-lg sm:text-2xl font-bold text-dark text-center">
@@ -178,7 +181,8 @@ function BannerAlternative(props) {
             src={profileImageURL}
             width={51}
             height={51}
-            className="object-cover rounded-full"
+            layout="responsive"
+            className="rounded-full"
           />
         </div>
         <div className="flex-1">
