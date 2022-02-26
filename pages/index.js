@@ -147,6 +147,7 @@ export default function Home() {
     });
   };
 
+  // Change VisibleSection onScroll
   useEffect(() => {
     const sectionRefs = [
       { section: "findUser", ref: findUserRef, id: 1 },
@@ -184,6 +185,7 @@ export default function Home() {
     // };
   }, [visibleSection, scrolling]);
 
+  // Add Event Listeners on Scroll
   useEffect(() => {
     if (typeof window !== "undefined") {
       contentWrapperRef.current.addEventListener("scroll", () =>
@@ -194,6 +196,15 @@ export default function Home() {
       setScrolling(false);
     };
   }, []);
+
+  // setTimeout for API calls
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ValidateUser(searchRef.current.value);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [state.searchUser]);
 
   function handleColorSelection(bg, text, ring) {
     dispatch({
@@ -211,10 +222,6 @@ export default function Home() {
   }
 
   const ValidateUser = async (inputValue) => {
-    dispatch({
-      type: "search-user",
-      payload: searchRef.current.value,
-    });
     const response = await fetch("/api/twitter-user", {
       method: "POST",
       headers: {
@@ -525,9 +532,10 @@ export default function Home() {
                       payload: false,
                     });
                   } else {
-                    setTimeout(() => {
-                      ValidateUser(searchRef.current.value);
-                    }, 1000);
+                    dispatch({
+                      type: "search-user",
+                      payload: searchRef.current.value,
+                    });
                   }
                 }}
               />
